@@ -17,7 +17,7 @@ class MasterskuController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(Category::class);
+        $this->authorizeResource(Mastersku::class);
     }
 
     public function index(Request $request)
@@ -33,7 +33,7 @@ class MasterskuController extends Controller
             $masterskus = Mastersku::latest()->paginate($perPage);
         }
 
-        return view('admin.masterskus.index', compact('academic_years'));
+        return view('admin.masterskus.index', compact('masterskus'));
     }
 
     /**
@@ -56,14 +56,16 @@ class MasterskuController extends Controller
     public function store(StoreMasterskuRequest $request)
     {
         $requestData = $request->all();
-
-        for($i=1;$i<=count($requestData['master_sku']);$i++)
+       
+        for($i=0;$i<count($requestData['mastersku']);$i++)
         {
+            
             Mastersku::create([
                 'category_id' => $requestData['category_id'],
-                'master_sku'=> $requestData['master_sku'][$i],
+                'mastersku'=> $requestData['mastersku'][$i]['mastersku'],
             ]);
         }
+        return redirect('mastersku')->with('success', 'Master Sku updated!');
     }
 
     /**
@@ -100,7 +102,7 @@ class MasterskuController extends Controller
     {
             $requestData = $request->all();
             $mastersku ->update($requestData);
-            return redirect('masterskus')->with('success', 'Master Sku updated!');
+            return redirect('mastersku')->with('success', 'Master Sku updated!');
     }
 
     /**
@@ -112,7 +114,7 @@ class MasterskuController extends Controller
     public function destroy(Mastersku $mastersku)
     {
         $mastersku ->delete();
-        return redirect('masterskus')->with('success', 'Master Sku deleted!');
+        return redirect('mastersku')->with('success', 'Master Sku deleted!');
     }
 
     public function removeMasterSku(Request $request){

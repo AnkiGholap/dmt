@@ -15,15 +15,15 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            'mastersku-viewAny',
-            'mastersku-delete',
-            'mastersku-view',
-            'mastersku-edit',
-            'mastersku-create',
-            'mastersku-restore',
-            'mastersku-forceDelete',
-            'mastersku-update',
-            'mastersku-store',
+           'sku-viewAny',
+            'sku-delete',
+            'sku-view',
+            'sku-edit',
+            'sku-create',
+            'sku-restore',
+            'sku-forceDelete',
+            'sku-update',
+            'sku-store',
 
         ];
 

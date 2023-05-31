@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMasterskuRequest extends FormRequest
+class UpdateTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class StoreMasterskuRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'required',
-            'mastersku' => 'required'
+            'name'=>'required'
         ];
     }
 }

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('content')
-@section('title', 'Master Sku')
+@section('title', 'Tags')
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -8,15 +8,15 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Master Sku List</h1>
+                    <h1>Suppliers List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        @can('mastersku-create')
+                        @can('tag-create')
                             <div>
-                                <a href="{{  url('/mastersku/create') }}" class="btn btn-primary btn-sm text-white mb-0 me-0"
+                                <a href="{{  url('/suppliers/create') }}" class="btn btn-primary btn-sm text-white mb-0 me-0"
                                     type="button"> <i class="fa fa-plus"></i> Add new
-                                    Master Sku</a>
+                                    Suppliers</a>
                             </div>
                         @endcan
                     </ol>
@@ -31,10 +31,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            {{-- <h3 class="card-title">Master Sku List</h3> --}}
+                            {{-- <h3 class="card-title">Suppliers List</h3> --}}
 
                             <div class="card-tools">
-                                    {!! Form::open(['method' => 'GET', 'url' => '/mastersku', 'role' => 'search'])  !!}
+                                    {!! Form::open(['method' => 'GET', 'url' => '/Suppliers', 'role' => 'search'])  !!}
 
                                 <div class="input-group input-group-sm" style="width: 150px;">
 
@@ -56,29 +56,28 @@
                             <table class="table table-head-fixed text-nowrap" style="text-align: center">
                                      <thead>
                         <tr>
-                            <th>#</th><th>Category</th><th>Master Sku</th><th>Status</th><th>Actions</th>
+                            <th>#</th><th>Name</th><th>Status</th><th>Actions</th>
 
                         </tr>
                     </thead>
                     <tbody>
 
-                      @foreach($masterskus as $item)
+                      @foreach($tags as $item)
                             <tr>
-                                <td>{{ (($masterskus->currentPage() - 1 ) * $masterskus->perPage() ) + $loop->iteration }}</td>
+                                <td>{{ (($suppliers->currentPage() - 1 ) * $suppliers->perPage() ) + $loop->iteration }}</td>
                                 
-                                <td>{{ $item->category->name }}</td>
-                                <td>{{ $item->mastersku }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td><label class="badge badge-{{ $item->status == 1 ? 'success' : 'danger' }}">{{ $item->status==1?'Active':'Inactive' }}</label></td>
                                 <td>
-                                    @can('mastersku-edit')
-                                    <a href="{{ url('/mastersku/' . $item->id . '/edit') }}" title="Edit Master Skus"><button class="btn btn-primary btn-sm"><i class="fa fa-pen" aria-hidden="true"></i> Edit</button></a>
+                                    @can('tag-edit')
+                                    <a href="{{ url('/suppliers/' . $item->id . '/edit') }}" title="Edit suppliers"><button class="btn btn-primary btn-sm"><i class="fa fa-pen" aria-hidden="true"></i> Edit</button></a>
                                     @endcan
 
-                                    @can('mastersku-delete')
-                                    <form method="POST" action="{{ url('/mastersku' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                    @can('tag-delete')
+                                    <form method="POST" action="{{ url('/suppliers' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
-                                        <button type="submit"  class="btn btn-danger btn-sm" title="Delete Master Skus" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                        <button type="submit"  class="btn btn-danger btn-sm" title="Delete suppliers" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                     </form>
                                     @endcan
 
@@ -88,7 +87,7 @@
                         </tbody>
                         </table>
                            <br>
-                        <div class="pagination-wrapper"> {!! $masterskus->appends(['search' => Request::get('search')])->render() !!} </div>
+                        <div class="pagination-wrapper"> {!! $suppliers->appends(['search' => Request::get('search')])->render() !!} </div>
 
                         </div>
                         <!-- /.card-body -->

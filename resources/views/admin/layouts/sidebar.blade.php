@@ -50,9 +50,9 @@
               
                 <li class="nav-header">Master Section</li>
                 <li
-                    class="nav-item {{ request()->is('cities*') ? 'menu-open' : '' }} ">
+                    class="nav-item {{ request()->is('categories*') ? 'menu-open' : '' }} ">
                     <a href="#"
-                        class="nav-link {{ request()->is('cities*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('categories*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-school"></i>
                         <p>
                             Masters
@@ -60,16 +60,47 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">                     
-                        @can('city-viewAny')
+                        @can('category-viewAny')
                             <li class="nav-item">
-                                <a href="{{ url('cities') }}" class="nav-link {{ request()->is('cities*') ? 'active' : '' }}">
+                                <a href="{{ url('categories') }}" class="nav-link {{ request()->is('categories*') ? 'active' : '' }}">
                                     <i class="fas fa-house-user nav-icon"></i>
-                                    <p>City/Village {{-- <span class="badge badge-info right">2</span> --}}</p>
+                                    <p>Categories {{-- <span class="badge badge-info right">2</span> --}}</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                    <ul class="nav nav-treeview">                     
+                        @can('mastersku-viewAny')
+                            <li class="nav-item">
+                                <a href="{{ url('mastersku') }}" class="nav-link {{ request()->is('mastersku*') ? 'active' : '' }}">
+                                    <i class="fas fa-house-user nav-icon"></i>
+                                    <p>Master Sku {{-- <span class="badge badge-info right">2</span> --}}</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                    <ul class="nav nav-treeview">                     
+                        @can('tag-viewAny')
+                            <li class="nav-item">
+                                <a href="{{ url('tags') }}" class="nav-link {{ request()->is('tags*') ? 'active' : '' }}">
+                                    <i class="fas fa-house-user nav-icon"></i>
+                                    <p>Tag {{-- <span class="badge badge-info right">2</span> --}}</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                    <ul class="nav nav-treeview">                     
+                        @can('sku-viewAny')
+                            <li class="nav-item">
+                                <a href="{{ url('skus') }}" class="nav-link {{ request()->is('skus*') ? 'active' : '' }}">
+                                    <i class="fas fa-house-user nav-icon"></i>
+                                    <p>Sku Form {{-- <span class="badge badge-info right">2</span> --}}</p>
                                 </a>
                             </li>
                         @endcan
                     </ul>
                 </li>
+
 
 
                 <li class="nav-header">System Section</li>

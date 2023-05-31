@@ -6,21 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class Supplier extends Model
 {
     use HasFactory,SoftDeletes;
 
     protected $guarded = [];
 
-    public function mastersku()
-    {
-        return $this->hasMany('App\Models\Mastersku','category_id','id');
-    }
-
     public function sku()
     {
-        return $this->belongsTo('App\Models\Sku','category_id','id');
+        return $this->belongsTo('App\Models\Sku','supplier_id','id');
     }
-
 
 }

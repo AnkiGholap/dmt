@@ -12,7 +12,7 @@
                     <ol class="breadcrumb float-sm-right">
                         @can('mastersku-create')
                         <div>
-                            <a href="{{ url('/masterskus') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button"> <i class="fa fa-arrow-left"></i> Back</a> 
+                            <a href="{{ url('/masterSku') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button"> <i class="fa fa-arrow-left"></i> Back</a> 
                         </div>
                         @endcan
                     </ol>
@@ -30,7 +30,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form method="POST" action="{{ url('/masterskus') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ url('/masterSku') }}" enctype="multipart/form-data">
                                 
                                 {{ csrf_field() }}
                                 @include ('admin.masterskus.form', ['formMode' => 'create'])

@@ -1,0 +1,146 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Salesdata;
+use App\Models\Skuforecastt1;
+use Illuminate\Http\Request;
+use Excel;
+use App\Imports\ImportSalesData;
+use App\Imports\ImportSkuForeCastT1;
+
+use Illuminate\Support\Facades\Storage;
+
+class SalesdataController extends Controller
+{
+    public function sales_data_import()
+    {
+        return view('admin.import_salesdata');
+    }
+
+    public function sales_data_save(Request $request)
+    {      
+        if($request->file('file'))
+        {
+            $datas = Excel::toArray(new ImportSalesData, $request->file);
+        }   
+        else
+        {
+            return redirect()->back()->with('errors', 'Please Enter Proper File Format');
+        } 
+
+        try
+        {
+            foreach($datas[0] as $k => $v)
+            {  
+               
+                if($k != 0)
+                {   
+                   
+                    $id = 0;
+                    $salesData = Salesdata::where('date',$v[10])->where('month', $v[11])->where('year',$v[12])->first();
+                        
+                    if(!$salesData)
+                    {
+                        $salesData = new Salesdata;
+                    }
+                    else
+                    {
+                        $id = $salesData->id;
+                    }
+                    
+                    $salesData->id = $v[0];
+                    $salesData->t2_month_online = $v[1];
+                    $salesData->t2_month_offline_select = $v[2];
+                    $salesData->t2_month_offline_mass = $v[3];
+                    $salesData->t1_month_online = $v[4];
+                    $salesData->t1_month_offline_select = $v[5];
+                    $salesData->t1_month_offline_mass = $v[6];
+                    $salesData->t_month_online = $v[7];
+                    $salesData->t_month_offline_select = $v[8];                   
+                    $salesData->t_month_offline_mass = $v[9];
+                    $salesData->date = $v[10];
+                    $salesData->month = $v[11];
+                    $salesData->year = $v[12];
+                                                    
+                    if($id == 0)
+                    {
+                        $salesData->save();
+                    }
+                    else
+                    {
+                        $salesData->update();
+                    }
+                }    
+            }        
+            return redirect()->route('salesDataImport')->with('success', 'salesDatas Imported!');
+        }
+        catch(\Exception $e)
+        {
+            dd($e);
+            return redirect()->back()->with('error', $e);
+        }  
+    }
+
+    public function sku_forecast_t1_import()
+    {
+        return view('admin.import_skuforecastt1');
+    }
+
+    public function sku_forecast_t1_save(Request $request)
+    {      
+        if($request->file('file'))
+        {
+            $datas = Excel::toArray(new ImportSkuForeCastT1, $request->file);
+        }   
+        else
+        {
+            return redirect()->back()->with('errors', 'Please Enter Proper File Format');
+        } 
+
+        try
+        {
+            foreach($datas[0] as $k => $v)
+            {  
+               
+                if($k != 0)
+                {   
+                   
+                    $id = 0;
+                    $Skuforecastt1 = Skuforecastt1::where('date',$v[4])->where('month', $v[5])->where('year',$v[6])->first();
+                        
+                    if(!$Skuforecastt1)
+                    {
+                        $Skuforecastt1 = new Skuforecastt1;
+                    }
+                    else
+                    {
+                        $id = $Skuforecastt1->id;
+                    }
+                    
+                    $Skuforecastt1->id = $v[0];
+                    $Skuforecastt1->t1_month_online = $v[1];
+                    $Skuforecastt1->t1_month_offline_select = $v[2];
+                    $Skuforecastt1->t1_month_offline_mass = $v[3];
+                    $Skuforecastt1->date = $v[4];
+                    $Skuforecastt1->month = $v[5];
+                    $Skuforecastt1->year = $v[6];
+                                                    
+                    if($id == 0)
+                    {
+                        $Skuforecastt1->save();
+                    }
+                    else
+                    {
+                        $Skuforecastt1->update();
+                    }
+                }    
+            }        
+            return redirect()->route('skuForeCastT1Import')->with('success', 'Sku forecast for T1 Imported!');
+        }
+        catch(\Exception $e)
+        {
+            dd($e);
+            return redirect()->back()->with('error', $e);
+        }  
+    }
+}

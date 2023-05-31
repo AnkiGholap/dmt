@@ -17,4 +17,9 @@ class Mastersku extends Model
         return $this->belongsTo('App\Models\Category','category_id','id');
     }
 
+    public function sku()
+    {
+        return $this->belongsTo('App\Models\Sku','master_sku_id','id');
+    }
+
 }
