@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Excel;
 use App\Imports\ImportSalesData;
 use App\Imports\ImportSkuForeCastT1;
+use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -40,7 +41,7 @@ class SalesdataController extends Controller
         {
             foreach($datas[0] as $k => $v)
             {  
-                foreach ($v as $value) {var_dump($v);
+                foreach ($v as $value) {
                     if (!is_numeric($value) || floor($value) != $value) {
                        
                         return redirect()->back()->withErrors(['message' => 'Invalid data: Please check excel data before uploading']);
@@ -50,9 +51,11 @@ class SalesdataController extends Controller
                
                 if($k != 0)
                 {   
-                   
+                    $d = date('d');
+                    $m = Carbon::now()->month;
+                    $y = date('Y');
                     $id = 0;
-                    $salesData = Salesdata::where('date',$v[11])->where('month', $v[12])->where('year',$v[13])->first();
+                    $salesData = Salesdata::where('product_sku_id',@Sku::where('sku_code',$v[1])->first()->id)->first();
                         
                     if(!$salesData)
                     {
@@ -74,9 +77,9 @@ class SalesdataController extends Controller
                     $salesData->t_month_online = $v[8];
                     $salesData->t_month_offline_select = $v[9];                   
                     $salesData->t_month_offline_mass = $v[10];
-                    $salesData->date = $v[11];
-                    $salesData->month = $v[12];
-                    $salesData->year = $v[13];
+                    $salesData->date = $d;
+                    $salesData->month = $m;
+                    $salesData->year = $y;
                                                     
                     if($id == 0)
                     {
@@ -120,7 +123,9 @@ class SalesdataController extends Controller
                
                 if($k != 0)
                 {   
-                   
+                    $d = date('d');
+                    $m = Carbon::now()->month+2;
+                    $y = date('Y');
                     $id = 0;
                     $Skuforecastt1 = Skuforecastt1::where('date',$v[4])->where('month', $v[5])->where('year',$v[6])->first();
                         
