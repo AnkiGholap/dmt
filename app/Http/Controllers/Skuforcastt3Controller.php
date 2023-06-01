@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateSkuforcastt3Request;
 use Illuminate\Http\Request;
 use Excel;
 use App\Imports\ImportSkuForeCastT3;
+use Carbon\Carbon;
 
 class Skuforcastt3Controller extends Controller
 {
@@ -50,7 +51,10 @@ class Skuforcastt3Controller extends Controller
                         }
                     }
                     $id = 0;
-                    $Skuforecastt1 = Skuforcastt3::where('date',$v[5])->where('month', $v[6])->where('year',$v[7])->first();
+                    $d = date('d');
+                    $m = Carbon::now()->month+3;
+                    $y = date('Y');
+                    $Skuforecastt1 = Skuforcastt3::where('product_sku_id',@Sku::where('sku_code',$v[1])->first()->id)->first();
                         
                     if(!$Skuforecastt1)
                     {
@@ -66,9 +70,9 @@ class Skuforcastt3Controller extends Controller
                     $Skuforecastt1->t3_month_online = $v[2];
                     $Skuforecastt1->t3_month_offline_select = $v[3];
                     $Skuforecastt1->t3_month_offline_mass = $v[4];
-                    $Skuforecastt1->date = $v[5];
-                    $Skuforecastt1->month = $v[6];
-                    $Skuforecastt1->year = $v[7];
+                    $Skuforecastt1->date = $d;
+                    $Skuforecastt1->month = $m;
+                    $Skuforecastt1->year = $y;
                                                     
                     if($id == 0)
                     {
