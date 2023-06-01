@@ -29,6 +29,20 @@
                         <div class="card-header">
                             <h3 class="card-title">Import New Sku Forecast T1 Data</h3>
                         </div>
+                        @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form method="POST"  action="{{ route('skuForeCastT1Save') }}" enctype="multipart/form-data">

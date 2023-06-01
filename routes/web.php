@@ -16,6 +16,10 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\SkuController;
 use App\Http\Controllers\SalesdataController;
+use App\Http\Controllers\SkuForecastT1Controller;
+use App\Http\Controllers\SkuForcastT2Controller;
+use App\Http\Controllers\SkuForcastT3Controller;
+use App\Http\Controllers\ActualstockController;
 
 Route::redirect('/','login' );
 Auth::routes();
@@ -40,6 +44,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('removeMasterSku', [MasterskuController::class, 'removeMasterSku'])->name('removeMasterSku');
     Route::get('/salesdataImport',[SalesdataController::class,'sales_data_import'])->name('salesDataImport');
     Route::post('/salesDataSave',[SalesdataController::class,'sales_data_save'])->name('salesDataSave');
-    Route::get('/skuForeCastT1Import',[SalesdataController::class,'sku_forecast_t1_import'])->name('skuForeCastT1Import');
-    Route::post('/skuForeCastT1Save',[SalesdataController::class,'sku_forecast_t1_save'])->name('skuForeCastT1Save');
+    Route::get('/skuForeCastT1Import',[SkuForecastT1Controller::class,'sku_forecast_t1_import'])->name('skuForeCastT1Import');
+    Route::post('/skuForeCastT1Save',[SkuForecastT1Controller::class,'sku_forecast_t1_save'])->name('skuForeCastT1Save');
+    Route::get('/skuForeCastT2Import',[SkuForcastT2Controller::class,'sku_forecast_t2_import'])->name('skuForeCastT2Import');
+    Route::post('/skuForeCastT2Save',[SkuForcastT2Controller::class,'sku_forecast_t2_save'])->name('skuForeCastT2Save');
+    Route::get('/skuForeCastT3Import',[SkuForcastT3Controller::class,'sku_forecast_t3_import'])->name('skuForeCastT3Import');
+    Route::post('/skuForeCastT3Save',[SkuForcastT3Controller::class,'sku_forecast_t3_save'])->name('skuForeCastT3Save');
+    Route::get('/actualStockImport',[ActualStockController::class,'actualstock_import'])->name('actualStockImport');
+    Route::post('/actualStockSave',[ActualStockController::class,'actual_stock_save'])->name('actualStockSave');
 });

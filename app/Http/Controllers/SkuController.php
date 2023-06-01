@@ -29,7 +29,7 @@ class SkuController extends Controller
         } else {
             $skus = Sku::latest()->paginate($perPage);
         }
-
+     
         return view('admin.skus.index', compact('skus'));
     }
 

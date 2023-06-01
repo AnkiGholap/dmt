@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('content')
-@section('title', 'Tags')
+@section('title', 'Suppliers')
 
 <div class="content-wrapper">
     <section class="content-header">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        @can('tag-create')
+                        @can('supplier-create')
                             <div>
                                 <a href="{{  url('/suppliers/create') }}" class="btn btn-primary btn-sm text-white mb-0 me-0"
                                     type="button"> <i class="fa fa-plus"></i> Add new
@@ -62,7 +62,7 @@
                     </thead>
                     <tbody>
 
-                      @foreach($tags as $item)
+                      @foreach($suppliers as $item)
                             <tr>
                                 <td>{{ (($suppliers->currentPage() - 1 ) * $suppliers->perPage() ) + $loop->iteration }}</td>
                                 

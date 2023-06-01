@@ -65,19 +65,19 @@
                       @foreach($skus as $item)
                             <tr>
                                 <td>{{ (($skus->currentPage() - 1 ) * $skus->perPage() ) + $loop->iteration }}</td>
-                                
+                                <td>{{ $item->sku_code }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->category->name }}</td>
                                 <td>{{ $item->supplier->name }}</td>
-                                <td>{{ $item->mastersku->name }}</td>
+                                <td>{{ $item->mastersku->mastersku }}</td>
                                 <td>{{ $item->price }}</td>
                                 <td><label class="badge badge-{{ $item->status == 1 ? 'success' : 'danger' }}">{{ $item->status==1?'Active':'Inactive' }}</label></td>
                                 <td>
-                                    @can('category-edit')
+                                    @can('sku-edit')
                                     <a href="{{ url('/skus/' . $item->id . '/edit') }}" title="Edit Skus"><button class="btn btn-primary btn-sm"><i class="fa fa-pen" aria-hidden="true"></i> Edit</button></a>
                                     @endcan
 
-                                    @can('category-delete')
+                                    @can('sku-delete')
                                     <form method="POST" action="{{ url('/skus' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}

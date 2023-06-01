@@ -6,15 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Supplier extends Model
+class Skuforcastt3 extends Model
 {
     use HasFactory,SoftDeletes;
 
     protected $guarded = [];
-
-    public function sku()
-    {
-        return $this->hasMany('App\Models\Sku','supplier_id','id');
-    }
 
 }

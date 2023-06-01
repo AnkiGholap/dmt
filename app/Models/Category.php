@@ -19,7 +19,7 @@ class Category extends Model
 
     public function sku()
     {
-        return $this->belongsTo('App\Models\Sku','category_id','id');
+        return $this->hasMany('App\Models\Sku','category_id','id');
     }
 
 

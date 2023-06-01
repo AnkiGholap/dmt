@@ -19,7 +19,7 @@ class Mastersku extends Model
 
     public function sku()
     {
-        return $this->belongsTo('App\Models\Sku','master_sku_id','id');
+        return $this->hasMany('App\Models\Sku','master_sku_id','id');
     }
 
 }

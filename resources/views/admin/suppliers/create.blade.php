@@ -10,9 +10,9 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        @can('tag-create')
+                        @can('supplier-create')
                         <div>
-                            <a href="{{ url('/tags') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button"> <i class="fa fa-arrow-left"></i> Back</a> 
+                            <a href="{{ url('/suppliers') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button"> <i class="fa fa-arrow-left"></i> Back</a> 
                         </div>
                         @endcan
                     </ol>
@@ -26,14 +26,14 @@
                 <div class="col-12">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Create New Tag</h3>
+                            <h3 class="card-title">Create Supplier</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form method="POST" action="{{ url('/tags') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ url('/suppliers') }}" enctype="multipart/form-data">
                                 
                                 {{ csrf_field() }}
-                                @include ('admin.tags.form', ['formMode' => 'create'])
+                                @include ('admin.suppliers.form', ['formMode' => 'create'])
 
                             </form>
 

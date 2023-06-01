@@ -70,15 +70,16 @@
                         @endcan
                     </ul>
                     <ul class="nav nav-treeview">                     
-                        @can('mastersku-viewAny')
+                        @can('supplier-viewAny')
                             <li class="nav-item">
-                                <a href="{{ url('mastersku') }}" class="nav-link {{ request()->is('mastersku*') ? 'active' : '' }}">
+                                <a href="{{ url('suppliers') }}" class="nav-link {{ request()->is('suppliers*') ? 'active' : '' }}">
                                     <i class="fas fa-house-user nav-icon"></i>
-                                    <p>Master Sku {{-- <span class="badge badge-info right">2</span> --}}</p>
+                                    <p>Suppliers {{-- <span class="badge badge-info right">2</span> --}}</p>
                                 </a>
                             </li>
                         @endcan
                     </ul>
+                    
                     <ul class="nav nav-treeview">                     
                         @can('tag-viewAny')
                             <li class="nav-item">
@@ -90,19 +91,103 @@
                         @endcan
                     </ul>
                     <ul class="nav nav-treeview">                     
-                        @can('sku-viewAny')
+                        @can('mastersku-viewAny')
                             <li class="nav-item">
-                                <a href="{{ url('skus') }}" class="nav-link {{ request()->is('skus*') ? 'active' : '' }}">
+                                <a href="{{ url('mastersku') }}" class="nav-link {{ request()->is('mastersku*') ? 'active' : '' }}">
                                     <i class="fas fa-house-user nav-icon"></i>
-                                    <p>Sku Form {{-- <span class="badge badge-info right">2</span> --}}</p>
+                                    <p>Master Sku {{-- <span class="badge badge-info right">2</span> --}}</p>
                                 </a>
                             </li>
                         @endcan
                     </ul>
+                    
                 </li>
 
 
-
+                <li class="nav-header">Menu</li>
+                <li class="nav-item {{ request()->is('skus*') ? 'menu-open' : '' }} ">
+                    <a href="#"
+                        class="nav-link {{ request()->is('skus*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-school"></i>
+                        <p>
+                            Menu
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">                     
+                        @can('sku-viewAny')
+                            <li class="nav-item">
+                                <a href="{{ url('skus') }}" class="nav-link {{ request()->is('skus*') ? 'active' : '' }}">
+                                    <i class="fas fa-house-user nav-icon"></i>
+                                    <p>Add/Update Sku Form {{-- <span class="badge badge-info right">2</span> --}}</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                    <ul class="nav nav-treeview">                     
+                        @can('salesdata-viewAny')
+                            <li class="nav-item">
+                                <a href="{{ url('salesdataImport') }}" class="nav-link {{ request()->is('salesdataImport*') ? 'active' : '' }}">
+                                    <i class="fas fa-house-user nav-icon"></i>
+                                    <p>Upload Last Day Sales data via excel</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                    <ul class="nav nav-treeview">  
+                    <li class="nav-item {{ request()->is('skuForeCastT1Import*') ? 'menu-open' : '' }} ">
+                        <a href="#"
+                            class="nav-link {{ request()->is('skuForeCastT1Import*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-school"></i>
+                            <p>
+                                Sku Wise Forecast
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">                     
+                            @can('skuforecastt1-viewAny')
+                                <li class="nav-item">
+                                    <a href="{{ url('skuForeCastT1Import') }}" class="nav-link {{ request()->is('skuForeCastT1Import*') ? 'active' : '' }}">
+                                        <i class="fas fa-house-user nav-icon"></i>
+                                        <p>T+1 Month</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                        <ul class="nav nav-treeview">                     
+                            @can('skuforecastt2-viewAny')
+                                <li class="nav-item">
+                                    <a href="{{ url('skuForeCastT2Import') }}" class="nav-link {{ request()->is('skuForeCastT2Import*') ? 'active' : '' }}">
+                                        <i class="fas fa-house-user nav-icon"></i>
+                                        <p>T+2 Month</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                        <ul class="nav nav-treeview">                     
+                            @can('skuforecastt3-viewAny')
+                                <li class="nav-item">
+                                    <a href="{{ url('skuForeCastT3Import') }}" class="nav-link {{ request()->is('skuForeCastT3Import*') ? 'active' : '' }}">
+                                        <i class="fas fa-house-user nav-icon"></i>
+                                        <p>T+3 Month</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                        <ul class="nav nav-treeview">                     
+                            @can('actualstock-viewAny')
+                                <li class="nav-item">
+                                    <a href="{{ url('actualStockImport') }}" class="nav-link {{ request()->is('actualStockImport*') ? 'active' : '' }}">
+                                        <i class="fas fa-house-user nav-icon"></i>
+                                        <p>Actual Stock</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                    </ul>
+                </li>
+            
                 <li class="nav-header">System Section</li>
                 <li
                     class="nav-item {{ request()->is('settings*') || request()->is('users*') || request()->is('roles*') || request()->is('permissions*') ? 'menu-open' : '' }} ">

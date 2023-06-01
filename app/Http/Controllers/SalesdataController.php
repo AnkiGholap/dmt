@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Salesdata;
+use App\Models\Sku;
 use App\Models\Skuforecastt1;
 use Illuminate\Http\Request;
 use Excel;
@@ -12,6 +13,11 @@ use Illuminate\Support\Facades\Storage;
 
 class SalesdataController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Salesdata::class);
+    }
+
     public function sales_data_import()
     {
         return view('admin.import_salesdata');
@@ -19,6 +25,8 @@ class SalesdataController extends Controller
 
     public function sales_data_save(Request $request)
     {      
+
+        
         if($request->file('file'))
         {
             $datas = Excel::toArray(new ImportSalesData, $request->file);
@@ -32,12 +40,19 @@ class SalesdataController extends Controller
         {
             foreach($datas[0] as $k => $v)
             {  
+                foreach ($v as $value) {var_dump($v);
+                    if (!is_numeric($value) || floor($value) != $value) {
+                       
+                        return redirect()->back()->withErrors(['message' => 'Invalid data: Please check excel data before uploading']);
+
+                    }
+                }
                
                 if($k != 0)
                 {   
                    
                     $id = 0;
-                    $salesData = Salesdata::where('date',$v[10])->where('month', $v[11])->where('year',$v[12])->first();
+                    $salesData = Salesdata::where('date',$v[11])->where('month', $v[12])->where('year',$v[13])->first();
                         
                     if(!$salesData)
                     {
@@ -49,18 +64,19 @@ class SalesdataController extends Controller
                     }
                     
                     $salesData->id = $v[0];
-                    $salesData->t2_month_online = $v[1];
-                    $salesData->t2_month_offline_select = $v[2];
-                    $salesData->t2_month_offline_mass = $v[3];
-                    $salesData->t1_month_online = $v[4];
-                    $salesData->t1_month_offline_select = $v[5];
-                    $salesData->t1_month_offline_mass = $v[6];
-                    $salesData->t_month_online = $v[7];
-                    $salesData->t_month_offline_select = $v[8];                   
-                    $salesData->t_month_offline_mass = $v[9];
-                    $salesData->date = $v[10];
-                    $salesData->month = $v[11];
-                    $salesData->year = $v[12];
+                    $salesData->product_sku_id = @Sku::where('sku_code',$v[1])->first()->id;
+                    $salesData->t2_month_online = $v[2];
+                    $salesData->t2_month_offline_select = $v[3];
+                    $salesData->t2_month_offline_mass = $v[4];
+                    $salesData->t1_month_online = $v[5];
+                    $salesData->t1_month_offline_select = $v[6];
+                    $salesData->t1_month_offline_mass = $v[7];
+                    $salesData->t_month_online = $v[8];
+                    $salesData->t_month_offline_select = $v[9];                   
+                    $salesData->t_month_offline_mass = $v[10];
+                    $salesData->date = $v[11];
+                    $salesData->month = $v[12];
+                    $salesData->year = $v[13];
                                                     
                     if($id == 0)
                     {

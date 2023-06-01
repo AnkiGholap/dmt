@@ -14,16 +14,16 @@ class Sku extends Model
 
     public function category()
     {
-        return $this->hasMany('App\Models\Category','category_id','id');
+        return $this->belongsTo('App\Models\Category','category_id','id');
     }
 
     public function supplier()
     {
-        return $this->hasMany('App\Models\Supplier','supplier_id','id');
+        return $this->belongsTo('App\Models\Supplier','supplier_id','id');
     }
 
     public function mastersku()
     {
-        return $this->hasMany('App\Models\Mastersku','master_sku_id','id');
+        return $this->belongsTo('App\Models\Mastersku','master_sku_id','id');
     }
 }

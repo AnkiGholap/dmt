@@ -1,24 +1,21 @@
 @extends('admin.layouts.master')
 @section('content')
-@section('title', 'Import Sales Data')
+@section('title', 'Import Actual Sku')
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
-            
-
-            
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Import Sales Data</h1>
+                    <h1>Import Actual Sku</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                        
                         <div>
-                            <a href="{{ route('salesDataImport') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button">
+                            <a href="{{ route('actualStockImport') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button">
                                 <i class="fa fa-arrow-left"></i> Back</a>
                         </div>
-                      
+                     
                     </ol>
                 </div>
             </div>
@@ -30,17 +27,18 @@
                 <div class="col-12">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Import Sales Data</h3>
-                        </div>
+                            <h3 class="card-title">Import Actual Stock</h3>
+                        </div><br>
                         @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                         @if(session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -48,7 +46,7 @@
                         @endif
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form method="POST"  action="{{ route('salesDataSave') }}" enctype="multipart/form-data">
+                            <form method="POST"  action="{{ route('actualStockSave') }}" enctype="multipart/form-data">
 
                                 {{ csrf_field() }}
                                 <div class="row">
@@ -72,7 +70,7 @@
                                         <div class="form-group">
                                             <div class="form-group">
                                                 {!! Form::label('inf_file', 'Must Follow File Format:') !!}
-                                                <a href="{{ asset('files/salesData.xlsx') }}"> Download Now</a>
+                                                <a href="{{ asset('files/actualstock.xlsx') }}"> Download Now</a>
                                             </div>
                                         </div>
                                     </div>
