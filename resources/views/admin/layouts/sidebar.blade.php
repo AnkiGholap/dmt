@@ -50,9 +50,9 @@
               
                 <li class="nav-header">Master Section</li>
                 <li
-                    class="nav-item {{ request()->is('categories*') ? 'menu-open' : '' }} ">
+                    class="nav-item {{ request()->is('categories*') || request()->is('suppliers*') || request()->is('tags*') || request()->is('mastersku*')  ? 'menu-open' : '' }} ">
                     <a href="#"
-                        class="nav-link {{ request()->is('categories*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('categories*') || request()->is('suppliers*') || request()->is('tags*') || request()->is('mastersku*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-school"></i>
                         <p>
                             Masters
@@ -105,9 +105,9 @@
 
 
                 <li class="nav-header">Menu</li>
-                <li class="nav-item {{ request()->is('skus*') ? 'menu-open' : '' }} ">
+                <li class="nav-item {{ request()->is('skus*') || request()->is('salesdataImport*') || request()->is('skuForeCastT1Import*') || request()->is('skuForeCastT2Import*') || request()->is('skuForeCastT3Import*') || request()->is('actualStockImport*') ? 'menu-open' : '' }} ">
                     <a href="#"
-                        class="nav-link {{ request()->is('skus*') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('skus*') || request()->is('salesdataImport*') || request()->is('skuForeCastT1Import*') || request()->is('skuForeCastT2Import*') || request()->is('skuForeCastT3Import*') || request()->is('actualStockImport*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-school"></i>
                         <p>
                             Menu
@@ -135,9 +135,9 @@
                         @endcan
                     </ul>
                     <ul class="nav nav-treeview">  
-                    <li class="nav-item {{ request()->is('skuForeCastT1Import*') ? 'menu-open' : '' }} ">
+                    <li class="nav-item {{ request()->is('skuForeCastT1Import*') || request()->is('skuForeCastT2Import*') || request()->is('skuForeCastT3Import*') || request()->is('actualStockImport*') ? 'menu-open' : '' }} ">
                         <a href="#"
-                            class="nav-link {{ request()->is('skuForeCastT1Import*') ? 'active' : '' }}">
+                            class="nav-link {{ request()->is('skuForeCastT1Import*') || request()->is('skuForeCastT2Import*') || request()->is('skuForeCastT3Import*') || request()->is('actualStockImport*')  ? 'active' : '' }}">
                             <i class="nav-icon fas fa-school"></i>
                             <p>
                                 Sku Wise Forecast
