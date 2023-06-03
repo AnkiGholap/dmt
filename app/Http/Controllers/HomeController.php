@@ -27,7 +27,6 @@ class HomeController extends Controller
     {
         $skus  = Sku::with('category','supplier','mastersku','currentDateStock','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
 
-        dd($skus);
         return view('admin/dashboard',compact('skus'));
     }
 }
