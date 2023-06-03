@@ -1,6 +1,23 @@
 
   @extends('admin.layouts.master')
   @section('content')
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
   @section('title', 'Dashboard')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -33,7 +50,92 @@
         </div>
         <!-- /.row -->
 
+        <table>
+          <tr>
+            <th>#</th>
+            <th>SKU Code</th>
+            <th>Item Name</th>
+            <th>Tags</th>
+            <th>Category</th>
+            <th>Supplier</th>
+            <th>Master SKU</th>
+            <th>MRP</th>
+            <th>Cover</th>
+            <th>Stock To Be Maintained</th>
+            <th>Actual Stock</th>
+            <th>PO expected to arrive in 15 Days</th>
+            <th>Stock Excess / Shortage</th>
+            <th>Open PO Qty</th>
+            <th>Next Inbound Quantity</th>
+            <th>Next Inbound Date</th>
+            <th>T-2 month Online</th>
+            <th>T-2 month Offline Select</th>
+            <th>T-2 month Offline Mass</th>
+            <th>T-1 month Online</th>
+            <th>T-1 month Offline Select</th>
+            <th>T-1 month Offline Mass</th>
+            <th>T month Online</th>
+            <th>T month Offline Select</th>
+            <th>T month Offline Mass</th>
+            <th>T+1 month Online</th>
+            <th>T+1 month Offline Select</th>
+            <th>T+1 month Offline Mass</th>
+            <th>T+2 month Online</th>
+            <th>T+2 month Offline Select</th>
+            <th>T+2 month Offline Mass</th>
+            <th>T+3 month Online</th>
+            <th>T+3 month Offline Select</th>
+            <th>T+3 month Offline Mass</th>
+            <th>Remarks</th>
+          </tr>
         
+          @php 
+            $srNo = 1;
+          @endphp
+          @foreach($skus as $key => $sku)
+            <tr>
+               <td>{{$srNo++}}</td>
+               <td>{{$sku->sku_code}}</td>
+               <td>{{$sku->name}}</td>
+               <td>TAGS</td>
+               <td>{{@$sku->category->name}}</td>
+               <td>{{@$sku->supplier->name}}</td>
+               <td>{{@$sku->mastersku->mastersku}}</td>
+               <td>{{@$sku->price}}</td>
+               <td>COVER</td>
+               <td>STBM</td>
+               <td>{{@$sku->currentDateStock->actual_stock ? number_format($sku->currentDateStock->actual_stock) : ''}}</td>
+               <td>K</td>
+               <td>L</td>
+               <td>M</td>
+               <td>N</td>
+               <td>O</td>
+               <td>Q</td>
+               <td>R</td>
+               <td>S</td>               
+               <td>T</td>
+               <td>U</td>
+               <td>V</td>
+               <td>W</td>
+               <td>X</td>
+               <td>Y</td>
+               <td>{{@$sku->skuforcastt1->t1_month_online ? number_format($sku->skuforcastt1->t1_month_online) : ''}}</td>
+               <td>{{@$sku->skuforcastt1->t1_month_offline_select ? number_format($sku->skuforcastt1->t1_month_offline_select) : ''}}</td>
+               <td>{{@$sku->skuforcastt1->t1_month_offline_mass ? number_format($sku->skuforcastt1->t1_month_offline_mass) : ''}}</td>
+
+               <td>{{@$sku->skuforcastt2->t2_month_online ? number_format($sku->skuforcastt2->t2_month_online) : ''}}</td>
+               <td>{{@$sku->skuforcastt2->t2_month_offline_select ? number_format($sku->skuforcastt2->t2_month_offline_select) : ''}}</td>
+               <td>{{@$sku->skuforcastt2->t2_month_offline_mass ? number_format($sku->skuforcastt2->t2_month_offline_mass) : ''}}</td>
+
+               <td>{{@$sku->skuforcastt3->t3_month_online ? number_format($sku->skuforcastt3->t3_month_online) : ''}}</td>
+               <td>{{@$sku->skuforcastt3->t3_month_offline_select ? number_format($sku->skuforcastt3->t3_month_offline_select) : ''}}</td>
+               <td>{{@$sku->skuforcastt3->t3_month_offline_mass ? number_format($sku->skuforcastt3->t3_month_offline_mass) : ''}}</td>
+               <td></td>
+            </tr>
+          @endforeach
+          
+        </table>
+
         <!-- /.row -->
 
         <!-- Main row -->
