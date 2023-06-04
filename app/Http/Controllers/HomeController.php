@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $skus  = Sku::with('category','supplier','mastersku','currentDateStock','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
+        $skus  = Sku::with('category','supplier','mastersku','currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
 
         return view('admin/dashboard',compact('skus'));
     }

@@ -116,17 +116,17 @@
                <td>N</td>
                <td>O</td>
 
-               <td>{{@$sku->actualSalesData->t2_month_online         ? number_format($sku->actualSalesData->t2_month_online) : '-'}}</td>
-               <td>{{@$sku->actualSalesData->t2_month_offline_select ? number_format($sku->actualSalesData->t2_month_offline_select) : '-'}}</td>
-               <td>{{@$sku->actualSalesData->t2_month_offline_mass   ? number_format($sku->actualSalesData->t2_month_offline_mass) : '-'}}</td>  
+               <td>{{@$sku->skuPastTwoMonth->online                  ? number_format($sku->skuPastTwoMonth->online) : '-'}}</td>
+               <td>{{@$sku->skuPastTwoMonth->offline_select          ? number_format($sku->skuPastTwoMonth->offline_select) : '-'}}</td>
+               <td>{{@$sku->skuPastTwoMonth->offline_mass            ? number_format($sku->skuPastTwoMonth->offline_mass) : '-'}}</td>  
 
-               <td>{{@$sku->actualSalesData->t1_month_online         ? number_format($sku->actualSalesData->t1_month_online) : '-'}}</td>
-               <td>{{@$sku->actualSalesData->t1_month_offline_select ? number_format($sku->actualSalesData->t1_month_offline_select) : '-'}}</td>
-               <td>{{@$sku->actualSalesData->t1_month_offline_mass   ? number_format($sku->actualSalesData->t1_month_offline_mass) : '-'}}</td>    
+               <td>{{@$sku->skuPastTwoMonth->online                  ? number_format($sku->skuPastTwoMonth->online) : '-'}}</td>
+               <td>{{@$sku->skuPastTwoMonth->offline_select          ? number_format($sku->skuPastTwoMonth->offline_select) : '-'}}</td>
+               <td>{{@$sku->skuPastTwoMonth->offline_mass            ? number_format($sku->skuPastTwoMonth->offline_mass) : '-'}}</td>    
 
-               <td>{{@$sku->actualSalesData->t_month_online          ? number_format($sku->actualSalesData->t_month_online) : '-'}}</td>
-               <td>{{@$sku->actualSalesData->t_month_offline_select  ? number_format($sku->actualSalesData->t_month_offline_select) : '-'}}</td>
-               <td>{{@$sku->actualSalesData->t_month_offline_mass    ? number_format($sku->actualSalesData->t_month_offline_mass) : '-'}}</td>    
+               <td>{{@$sku->actualSalesData()                        ? number_format($sku->actualSalesData()->sum('t_month_online')) : '-'}}</td>
+               <td>{{@$sku->actualSalesData()                        ? number_format($sku->actualSalesData()->sum('t_month_offline_select')) : '-'}}</td>
+               <td>{{@$sku->actualSalesData()                        ? number_format($sku->actualSalesData()->sum('t_month_offline_mass')) : '-'}}</td>    
 
                <td>{{@$sku->skuforcastt1->online                     ? number_format($sku->skuforcastt1->online) : '-'}}</td>
                <td>{{@$sku->skuforcastt1->offline_select             ? number_format($sku->skuforcastt1->offline_select) : '-'}}</td>

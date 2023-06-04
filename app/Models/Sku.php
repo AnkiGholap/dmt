@@ -31,19 +31,31 @@ class Sku extends Model
 
     public function currentDateStock()
     {
-        $currentTime = date('H:i');
-        if($currentTime > '12:15')
-        {
-            $date = date('Y-m-d');
-        }
-        else
-        {
-            $date = date('Y-m-d',strtotime("-1 days"));
-        }
+        // $currentTime = date('H:i');
+        // if($currentTime > '12:15')
+        // {
+        //     $date = date('Y-m-d');
+        // }
+        // else
+        // {
+        //     $date = date('Y-m-d',strtotime("-1 days"));
+        // }
 
-        return $this->hasOne('App\Models\Actualstock','product_sku_id','id')->whereDate('created_at',$date);
+        // return $this->hasOne('App\Models\Actualstock','product_sku_id','id')->whereDate('created_at',$date);
+        return $this->hasOne('App\Models\Actualstock','product_sku_id','id')->orderBy('id','DESC');
     }
 
+    public function skuPastTwoMonth()
+    {
+        $date = Carbon::today()->subMonth(2);
+        return $this->hasOne('App\Models\Skuforecastt1','product_sku_id','id')->where('month',$date->month)->where('year',$date->year);
+    }
+
+    public function skuPastOneMonth()
+    {
+        $date = Carbon::today()->subMonth(1);
+        return $this->hasOne('App\Models\Skuforecastt1','product_sku_id','id')->where('month',$date->month)->where('year',$date->year);
+    }  
 
     public function actualSalesData()
     {
@@ -56,7 +68,9 @@ class Sku extends Model
         {
             $date = Carbon::yesterday()->subDay();            
         }
-        return $this->hasOne('App\Models\Salesdata','product_sku_id','id')->where('date',$date->day)->where('month',$date->month)->where('year',$date->year);
+        // return $this->hasOne('App\Models\Salesdata','product_sku_id','id')->where('date',$date->day)->where('month',$date->month)->where('year',$date->year);
+        // return $this->hasMany('App\Models\Salesdata','product_sku_id','id')->orderBy('id','DESC');
+        return $this->hasMany('App\Models\Salesdata','product_sku_id','id')->where('month',$date->month)->where('year',$date->year);
     }
 
     public function skuforcastt1()
