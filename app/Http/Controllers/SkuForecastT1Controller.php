@@ -36,57 +36,48 @@ class SkuForecastT1Controller extends Controller
 
         try
         {
-            foreach($datas[0] as $k => $v)
-            { 
-                
-                if($k != 0)
-                {   
+            $day   = date('d');
+            $month = $request->month;
+            $year  = $request->year;
 
-                    foreach ($v as $value) {
-                        if (!is_numeric($value) || floor($value) != $value) {
-                          
-                            return redirect()->back()->withErrors(['message' => 'Invalid data: Please check excel data before uploading']);
-    
+            foreach($datas[0] as $k => $v)
+            {                 
+                if($k != 0)
+                {  
+                    foreach ($v as $value) 
+                    {
+                        if (!is_numeric($value) || floor($value) != $value) 
+                        {                          
+                            return redirect()->back()->withErrors(['message' => 'Invalid data: Please check excel data before uploading']);    
                         }
                     }
                    
-                    $d = date('d');
-                    $m = Carbon::now()->month+1;
-                    $y = date('Y');
-                    $id = 0;
-                    $Skuforecastt1 = Skuforecastt1::where('product_sku_id',@Sku::where('sku_code',$v[1])->first()->id)->first();
+                    // $Skuforecastt1 = Skuforecastt1::where('product_sku_id',@Sku::where('sku_code',$v[1])->first()->id)->first();
                         
-                    if(!$Skuforecastt1)
-                    {
-                        $Skuforecastt1 = new Skuforecastt1;
-                    }
-                    else
-                    {
-                        $id = $Skuforecastt1->id;
-                    }
+                    // if(!$Skuforecastt1)
+                    // {
+                        // $Skuforecastt1 = new Skuforecastt1;
+                    // }
+                    // else
+                    // {
+                    //     $id = $Skuforecastt1->id;
+                    // }
 
+                    $Skuforecastt1 = new Skuforecastt1;
                     
-                    
-                    $Skuforecastt1->id = $v[0];
+                    $Skuforecastt1->id             = $v[0];
                     $Skuforecastt1->product_sku_id = @Sku::where('sku_code',$v[1])->first()->id;
-                    $Skuforecastt1->t1_month_online = $v[2];
-                    $Skuforecastt1->t1_month_offline_select = $v[3];
-                    $Skuforecastt1->t1_month_offline_mass = $v[4];
-                    $Skuforecastt1->date = $d;
-                    $Skuforecastt1->month = $m;
-                    $Skuforecastt1->year = $y;
+                    $Skuforecastt1->online         = $v[2];
+                    $Skuforecastt1->offline_select = $v[3];
+                    $Skuforecastt1->offline_mass   = $v[4];
+                    $Skuforecastt1->date           = $day;
+                    $Skuforecastt1->month          = $month;
+                    $Skuforecastt1->year           = $year;
                                                     
-                    if($id == 0)
-                    {
-                        $Skuforecastt1->save();
-                    }
-                    else
-                    {
-                        $Skuforecastt1->update();
-                    }
+                    $Skuforecastt1->save();
                 }    
             }        
-            return redirect()->route('skuForeCastT1Import')->with('success', 'Sku forecast for T1 Imported!');
+            return redirect()->route('skuForeCastT1Import')->with('success', 'Sku forecast Imported Successfully!');
         }
         catch(\Exception $e)
         {

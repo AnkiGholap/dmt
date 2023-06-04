@@ -26,8 +26,6 @@ class SalesdataController extends Controller
 
     public function sales_data_save(Request $request)
     {      
-
-        
         if($request->file('file'))
         {
             $datas = Excel::toArray(new ImportSalesData, $request->file);
@@ -39,56 +37,54 @@ class SalesdataController extends Controller
 
         try
         {
+            $date = Carbon::yesterday();
             foreach($datas[0] as $k => $v)
             {  
-                foreach ($v as $value) {
-                    if (!is_numeric($value) || floor($value) != $value) {
-                       
+                foreach ($v as $value) 
+                {
+                    if (!is_numeric($value) || floor($value) != $value) 
+                    {                       
                         return redirect()->back()->withErrors(['message' => 'Invalid data: Please check excel data before uploading']);
-
                     }
                 }
                
                 if($k != 0)
                 {   
-                    $d = date('d');
-                    $m = Carbon::now()->month;
-                    $y = date('Y');
-                    $id = 0;
-                    $salesData = Salesdata::where('product_sku_id',@Sku::where('sku_code',$v[1])->first()->id)->first();
-                        
-                    if(!$salesData)
-                    {
-                        $salesData = new Salesdata;
-                    }
-                    else
-                    {
-                        $id = $salesData->id;
-                    }
+                    // $salesData = Salesdata::where('product_sku_id',@Sku::where('sku_code',$v[1])->first()->id)->first();                        
+                    // if(!$salesData)
+                    // {
+                    //     $salesData = new Salesdata;
+                    // }
+                    // else
+                    // {
+                    //     $id = $salesData->id;
+                    // }
+
+                    $salesData = new Salesdata;
                     
-                    $salesData->id = $v[0];
-                    $salesData->product_sku_id = @Sku::where('sku_code',$v[1])->first()->id;
-                    $salesData->t2_month_online = $v[2];
+                    // $salesData->id = $v[0];
+                    $salesData->product_sku_id          = @Sku::where('sku_code',$v[1])->first()->id;
+                    $salesData->t2_month_online         = $v[2];
                     $salesData->t2_month_offline_select = $v[3];
-                    $salesData->t2_month_offline_mass = $v[4];
-                    $salesData->t1_month_online = $v[5];
+                    $salesData->t2_month_offline_mass   = $v[4];
+                    $salesData->t1_month_online         = $v[5];
                     $salesData->t1_month_offline_select = $v[6];
-                    $salesData->t1_month_offline_mass = $v[7];
-                    $salesData->t_month_online = $v[8];
-                    $salesData->t_month_offline_select = $v[9];                   
-                    $salesData->t_month_offline_mass = $v[10];
-                    $salesData->date = $d;
-                    $salesData->month = $m;
-                    $salesData->year = $y;
+                    $salesData->t1_month_offline_mass   = $v[7];
+                    $salesData->t_month_online          = $v[8];
+                    $salesData->t_month_offline_select  = $v[9];                   
+                    $salesData->t_month_offline_mass    = $v[10];
+                    $salesData->date                    = $date->day;
+                    $salesData->month                   = $date->month;
+                    $salesData->year                    = $date->year;
                                                     
-                    if($id == 0)
-                    {
+                    // if($id == 0)
+                    // {
                         $salesData->save();
-                    }
-                    else
-                    {
-                        $salesData->update();
-                    }
+                    // }
+                    // else
+                    // {
+                    //     $salesData->update();
+                    // }
                 }    
             }        
             return redirect()->route('salesDataImport')->with('success', 'salesDatas Imported!');

@@ -27,7 +27,7 @@
                 <div class="col-12">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Import New Sku Forecast T1 Data</h3>
+                            <h3 class="card-title">Import New Sku Forecast</h3>
                         </div>
                         @if($errors->any())
                         <div class="alert alert-danger">
@@ -50,6 +50,38 @@
                                 {{ csrf_field() }}
                                 <div class="row">
 
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Select Month</label>
+                                            <select name="month" class="form-control" required>
+                                                <option value="">Select Month</option>
+                                                <option value="1">January</option>
+                                                <option value="2">February</option>
+                                                <option value="3">March</option>
+                                                <option value="4">April</option>
+                                                <option value="5">May</option>
+                                                <option value="6">June</option>
+                                                <option value="7">July</option>
+                                                <option value="8">August</option>
+                                                <option value="9">September</option>
+                                                <option value="10">October</option>
+                                                <option value="11">November</option>
+                                                <option value="12">December</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Select Year</label>
+                                            <select name="year" class="form-control" required>
+                                                <option value="">Select Year</option>
+                                                <option value="{{date('Y')}}">{{date('Y')}}</option>
+                                                <option value="{{date('Y') + 1}}">{{date('Y') + 1}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <label>Import Lead File</label>
@@ -69,7 +101,7 @@
                                         <div class="form-group">
                                             <div class="form-group">
                                                 {!! Form::label('inf_file', 'Must Follow File Format:') !!}
-                                                <a href="{{ asset('files/skuforecastt1.xlsx') }}"> Download Now</a>
+                                                <a href="{{ asset('files/skuforecast.xlsx') }}"> Download Now</a>
                                             </div>
                                         </div>
                                     </div>

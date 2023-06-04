@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Sku extends Model
 {
@@ -43,18 +44,36 @@ class Sku extends Model
         return $this->hasOne('App\Models\Actualstock','product_sku_id','id')->whereDate('created_at',$date);
     }
 
+
+    public function actualSalesData()
+    {
+        $currentTime = date('H:i');
+        if($currentTime > '12:15')
+        {
+            $date = Carbon::yesterday();
+        }
+        else
+        {
+            $date = Carbon::yesterday()->subDay();            
+        }
+        return $this->hasOne('App\Models\Salesdata','product_sku_id','id')->where('date',$date->day)->where('month',$date->month)->where('year',$date->year);
+    }
+
     public function skuforcastt1()
     {
-        return $this->hasOne('App\Models\Skuforecastt1','product_sku_id','id')->where('month',date('m'))->where('year',date('Y'));
+        $date = Carbon::today()->addMonthsNoOverflow(1);
+        return $this->hasOne('App\Models\Skuforecastt1','product_sku_id','id')->where('month',$date->month)->where('year',$date->year);
     }
 
     public function skuforcastt2()
     {
-        return $this->hasOne('App\Models\Skuforcastt2','product_sku_id','id')->where('month',date('m'))->where('year',date('Y'));
+        $date = Carbon::today()->addMonthsNoOverflow(2);
+        return $this->hasOne('App\Models\Skuforecastt1','product_sku_id','id')->where('month',$date->month)->where('year',$date->year);
     }
 
     public function skuforcastt3()
     {
-        return $this->hasOne('App\Models\Skuforcastt3','product_sku_id','id')->where('month',date('m'))->where('year',date('Y'));
+        $date = Carbon::today()->addMonthsNoOverflow(3);
+        return $this->hasOne('App\Models\Skuforecastt1','product_sku_id','id')->where('month',$date->month)->where('year',$date->year);
     }
 }

@@ -134,47 +134,17 @@
                             </li>
                         @endcan
                     </ul>
-                    <ul class="nav nav-treeview">  
-                    <li class="nav-item {{ request()->is('skuForeCastT1Import*') || request()->is('skuForeCastT2Import*') || request()->is('skuForeCastT3Import*') || request()->is('actualStockImport*') ? 'menu-open' : '' }} ">
-                        <a href="#"
-                            class="nav-link {{ request()->is('skuForeCastT1Import*') || request()->is('skuForeCastT2Import*') || request()->is('skuForeCastT3Import*') || request()->is('actualStockImport*')  ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-school"></i>
-                            <p>
-                                Sku Wise Forecast
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">                     
-                            @can('skuforecastt1-viewAny')
-                                <li class="nav-item">
-                                    <a href="{{ url('skuForeCastT1Import') }}" class="nav-link {{ request()->is('skuForeCastT1Import*') ? 'active' : '' }}">
-                                        <i class="fas fa-house-user nav-icon"></i>
-                                        <p>T+1 Month</p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                        <ul class="nav nav-treeview">                     
-                            @can('skuforecastt2-viewAny')
-                                <li class="nav-item">
-                                    <a href="{{ url('skuForeCastT2Import') }}" class="nav-link {{ request()->is('skuForeCastT2Import*') ? 'active' : '' }}">
-                                        <i class="fas fa-house-user nav-icon"></i>
-                                        <p>T+2 Month</p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                        <ul class="nav nav-treeview">                     
-                            @can('skuforecastt3-viewAny')
-                                <li class="nav-item">
-                                    <a href="{{ url('skuForeCastT3Import') }}" class="nav-link {{ request()->is('skuForeCastT3Import*') ? 'active' : '' }}">
-                                        <i class="fas fa-house-user nav-icon"></i>
-                                        <p>T+3 Month</p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                        <ul class="nav nav-treeview">                     
+                    <ul class="nav nav-treeview">                     
+                        @can('skuforecastt1-viewAny')
+                            <li class="nav-item">
+                                <a href="{{ url('skuForeCastT1Import') }}" class="nav-link {{ request()->is('skuForeCastT1Import*') ? 'active' : '' }}">
+                                    <i class="fas fa-house-user nav-icon"></i>
+                                    <p>Upload Forecast</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                    <ul class="nav nav-treeview">                     
                             @can('actualstock-viewAny')
                                 <li class="nav-item">
                                     <a href="{{ url('actualStockImport') }}" class="nav-link {{ request()->is('actualStockImport*') ? 'active' : '' }}">
@@ -184,8 +154,7 @@
                                 </li>
                             @endcan
                         </ul>
-                    </li>
-                    </ul>
+                    
                 </li>
             
                 <li class="nav-header">System Section</li>
