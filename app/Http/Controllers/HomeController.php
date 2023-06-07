@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actualstock;
 use Illuminate\Http\Request;
+use App\Models\Sku;
 
 class HomeController extends Controller
 {
@@ -23,10 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $skus  = Sku::with('category','supplier','mastersku','currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
 
-        // dd(auth()->user()->hasAnyPermission(['user-create', 'permission2']));
-    // statements 
-        
-        return view('admin/dashboard');
+        return view('admin/dashboard',compact('skus'));
     }
 }

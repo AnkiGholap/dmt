@@ -15,15 +15,15 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $data = [
-           'actualstock-viewAny',
-            'actualstock-delete',
-            'actualstock-view',
-            'actualstock-edit',
-            'actualstock-create',
-            'actualstock-restore',
-            'actualstock-forceDelete',
-            'actualstock-update',
-            'actualstock-store',
+           'purchaseorder-viewAny',
+            'purchaseorder-delete',
+            'purchaseorder-view',
+            'purchaseorder-edit',
+            'purchaseorder-create',
+            'purchaseorder-restore',
+            'purchaseorder-forceDelete',
+            'purchaseorder-update',
+            'purchaseorder-store',
 
         ];
 

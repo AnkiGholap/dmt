@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Excel;
 use App\Imports\ImportActualStock;
+use Carbon\Carbon;
 
 class ActualstockController extends Controller
 {
@@ -36,49 +37,43 @@ class ActualstockController extends Controller
 
         try
         {
+            $date = Carbon::today();
             foreach($datas[0] as $k => $v)
             {  
                
                 if($k != 0)
-                {   
-                    // foreach ($v as $value) {
-                    //     if (!is_numeric($value) || floor($value) != $value) {
-                           
-                    //         return redirect()->back()->withErrors(['message' => 'Invalid data: Please check excel data before uploading']);
-    
-                    //     }
-                    // }
-                    $id = 0;
-                    $actualStock = Actualstock::where('date',$v[3])->where('month', $v[4])->where('year',$v[5])->first();
+                {  
+                    // $id = 0;
+                    // $actualStock = Actualstock::where('date',$v[3])->where('month', $v[4])->where('year',$v[5])->first();
                         
-                    if(!$actualStock)
-                    {
-                        $actualStock = new Actualstock;
-                    }
-                    else
-                    {
-                        $id = $actualStock->id;
-                    }
+                    // if(!$actualStock)
+                    // {
+                    //     $actualStock = new Actualstock;
+                    // }
+                    // else
+                    // {
+                    //     $id = $actualStock->id;
+                    // }
                     
-                    $actualStock->id = $v[0];
+                    $actualStock = new Actualstock;
                     $actualStock->product_sku_id = @Sku::where('sku_code',$v[1])->first()->id;
-                    $actualStock->actual_stock = $v[2];
-                    $actualStock->date = $v[3];
-                    $actualStock->month = $v[4];
-                    $actualStock->year = $v[5];
+                    $actualStock->actual_stock   = $v[2];
+                    $actualStock->date           = $date->day;
+                    $actualStock->month          = $date->month;
+                    $actualStock->year           = $date->year;
                    
                                                     
-                    if($id == 0)
-                    {
+                    // if($id == 0)
+                    // {
                         $actualStock->save();
-                    }
-                    else
-                    {
-                        $actualStock->update();
-                    }
+                    // }
+                    // else
+                    // {
+                    //     $actualStock->update();
+                    // }
                 }    
             }        
-            return redirect()->route('actualStockImport')->with('success', 'Actual Stock Imported!');
+            return redirect()->route('actualStockImport')->with('success', 'Actual Stock Data Imported!');
         }
         catch(\Exception $e)
         {
