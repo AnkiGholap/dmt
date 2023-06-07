@@ -29,6 +29,11 @@ class Sku extends Model
         return $this->belongsTo('App\Models\Mastersku','master_sku_id','id');
     }
 
+    public function po()
+    {
+        return $this->belongsTo('App\Models\Purchaseorder','product_sku_id','id');
+    }
+
     public function currentDateStock()
     {
         $currentTime = date('H:i');

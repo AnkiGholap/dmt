@@ -154,6 +154,17 @@
                                 </li>
                             @endcan
                         </ul>
+
+                        <ul class="nav nav-treeview">                     
+                           
+                                <li class="nav-item">
+                                    <a href="{{ url('skuImport') }}" class="nav-link {{ request()->is('skuImport*') ? 'active' : '' }}">
+                                        <i class="fas fa-house-user nav-icon"></i>
+                                        <p>Sku Import</p>
+                                    </a>
+                                </li>
+                          
+                        </ul>
                     
                 </li>
             

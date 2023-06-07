@@ -9,6 +9,9 @@ use App\Models\Supplier;
 use App\Http\Requests\StoreSkuRequest;
 use App\Http\Requests\UpdateSkuRequest;
 use Illuminate\Http\Request;
+use Excel;
+use App\Imports\ImportSku;
+use Carbon\Carbon;
 
 class SkuController extends Controller
 {
@@ -114,4 +117,66 @@ class SkuController extends Controller
         $sku->delete();
         return redirect('skus')->with('success', 'Sku data deleted!');
     }
+
+    public function sku_import()
+    {
+        return view('admin.import_sku');
+    }
+
+    public function sku_save(Request $request)
+    {      
+        if($request->file('file'))
+        {
+            $datas = Excel::toArray(new ImportSku, $request->file);
+        }   
+        else
+        {
+            return redirect()->back()->with('errors', 'Please Enter Proper File Format');
+        } 
+
+        try
+        {
+            $date = Carbon::yesterday();
+            foreach($datas[0] as $k => $v)
+            {  
+                $id = 0;
+                if($k != 0)
+                {   
+                     $sku = Sku::where('sku_code',$v[1])->first();                        
+                     if(!$sku)
+                     {
+                         $sku = new Sku;
+                     }
+                     else
+                     {
+                        $id = $sku->id;
+                     }
+                    
+                    $sku->sku_code          = $v[1];
+                    $sku->name         = $v[2];
+                    $sku->category_id = @Category::where('name',$v[3])->first()->id;
+                    $sku->supplier_id   = @Supplier::where('name',$v[4])->first()->id;
+                    $sku->master_sku_id         = @Mastersku::where('mastersku',$v[5])->first()->id;
+                    $sku->price                   = $v[6];
+                    $sku->status   = 1;
+                                                
+                     if($id == 0)
+                     {
+                        $sku->save();
+                     }
+                     else
+                     {
+                         $sku->update();
+                     }
+                }    
+            }        
+            return redirect()->route('skuImport')->with('success', 'skus Imported!');
+        }
+        catch(\Exception $e)
+        {
+            dd($e);
+            return redirect()->back()->with('error', $e);
+        }  
+    }
+
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\SkuForecastT1Controller;
 use App\Http\Controllers\SkuForcastT2Controller;
 use App\Http\Controllers\SkuForcastT3Controller;
 use App\Http\Controllers\ActualstockController;
+use App\Http\Controllers\PurchaseorderController;
 
 Route::redirect('/','login' );
 Auth::routes();
@@ -41,9 +42,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('tags', TagController::class);
     Route::resource('suppliers', SupplierController::class);
     Route::resource('skus', SkuController::class);
+    Route::resource('purchaseorders', PurchaseorderController::class);
     Route::post('removeMasterSku', [MasterskuController::class, 'removeMasterSku'])->name('removeMasterSku');
     Route::get('/salesdataImport',[SalesdataController::class,'sales_data_import'])->name('salesDataImport');
     Route::post('/salesDataSave',[SalesdataController::class,'sales_data_save'])->name('salesDataSave');
+    Route::get('/skuImport',[SkuController::class,'sku_import'])->name('skuImport');
+    Route::post('/skuSave',[SkuController::class,'sku_save'])->name('skuSave');
     Route::get('/skuForeCastT1Import',[SkuForecastT1Controller::class,'sku_forecast_t1_import'])->name('skuForeCastT1Import');
     Route::post('/skuForeCastT1Save',[SkuForecastT1Controller::class,'sku_forecast_t1_save'])->name('skuForeCastT1Save');
     Route::get('/skuForeCastT2Import',[SkuForcastT2Controller::class,'sku_forecast_t2_import'])->name('skuForeCastT2Import');
