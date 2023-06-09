@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
-@section('title', 'Import Sales Data')
+@section('title', 'Upload Sales Data')
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Import Sales Data</h1>
+                    <h1>Upload Sales Data</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -78,13 +78,14 @@
                                                 <option value="">Select Year</option>
                                                 <option value="{{date('Y')}}">{{date('Y')}}</option>
                                                 <option value="{{date('Y') + 1}}">{{date('Y') + 1}}</option>
+                                                <option value="{{date('Y') + 2}}">{{date('Y') + 2}}</option>
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Import Lead File</label>
+                                            <label>Upload Lead File</label>
                                             <div class="custom-file">
                                                 <input type="file" name="file" id="file" class="custom-file-input" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
                                                 <label class="custom-file-label" for="file">Choose file</label>

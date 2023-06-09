@@ -65,12 +65,12 @@
                       @foreach($skus as $item)
                             <tr>
                                 <td>{{ (($skus->currentPage() - 1 ) * $skus->perPage() ) + $loop->iteration }}</td>
-                                <td>{{ $item->sku_code }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->category->name }}</td>
-                                <td>{{ $item->supplier->name }}</td>
-                                <td>{{ $item->mastersku->mastersku }}</td>
-                                <td>{{ $item->price }}</td>
+                                <td>{{ @$item->sku_code }}</td>
+                                <td>{{ @$item->name }}</td>
+                                <td>{{ @$item->category->name }}</td>
+                                <td>{{ @$item->supplier->name }}</td>
+                                <td>{{ @$item->mastersku->mastersku }}</td>
+                                <td>{{ @$item->price }}</td>
                                 <td><label class="badge badge-{{ $item->status == 1 ? 'success' : 'danger' }}">{{ $item->status==1?'Active':'Inactive' }}</label></td>
                                 <td>
                                     @can('sku-edit')

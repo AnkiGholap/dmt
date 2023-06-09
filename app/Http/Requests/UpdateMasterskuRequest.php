@@ -25,7 +25,7 @@ class UpdateMasterskuRequest extends FormRequest
     {
         return [
             'category_id' => 'required',
-            'mastersku' => 'required'
+            // 'mastersku' => 'required'
         ];
     }
 }

@@ -12,34 +12,31 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="form-group">
-                <label>Mastersku :</label>
-                <div class="repeater mt-repeater mastersku">
-                    <div data-repeater-list="mastersku">
-                        <div class="row" data-repeater-item>
-                            <div class="form-group col-md-8">    
-                                
-                                    <input type="text" name="mastersku" value="{{ $mastersku->mastersku ?? old('name')}}" class="form-control mastersku" placeholder="Master Sku" />
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input data-repeater-delete type="button" value="Delete" data-id="{{ isset($mastersku->id)?$mastersku->id:'' }}"
-                                    class="form-control btn btn-secondary removeMasterSku" />
-                            </div>
-                        </div>    
-                    </div>    
-                </div>    
+        <div class="repeater mt-repeater masterskus">
+            <div data-repeater-list="mastersku">
+                <div class="row" data-repeater-item>
+    
+                    <div class="form-group col-md-6">
+                        <label>MasterSku</label>
+                        <input type="text" name="mastersku" value="{{ $mastersku->mastersku ?? old('name')}}" class="form-control mastersku" placeholder="Master Sku" />
+                    </div>
+    
+                    <div class="form-group col-md-6">
+                        <label>Delete :</label>
+                        <input data-repeater-delete type="button" value="Delete"
+                            class="form-control btn btn-secondary" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sn-2">
+                    <input data-repeater-create type="button" value="+ Add Master Sku" id="removeMasterSku"
+                        class="form-control btn btn-primary" />
+                </div>
             </div>
         </div>
-
-        
-        <div class="col-md-2">
-            <div class="form-group">
-            <label>Add More :</label>
-                <input data-repeater-create type="button" value="+ Add MasterSku"
-                    id="mastersku-repeater-button" class="form-control btn btn-primary" />
-            </div>        
-        </div>
-        
+ </div>
+                
 </div>
 <div class="row">        
         <div class="col-sm-6">
