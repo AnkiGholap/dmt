@@ -66,6 +66,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -76,6 +77,7 @@ class UserController extends Controller
         $input = $request->all();
         $input['soft_password'] = $input['password'];
         $input['password'] = Hash::make($input['password']);
+        $input['status'] = $input['status'];
     
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
@@ -128,18 +130,22 @@ class UserController extends Controller
             'roles' => 'required'
         ]);
     
-        $input = $request->all();
-        
-
-        if(!empty($input['password'])) { 
-            $input['password'] = Hash::make($input['password']);
+        $requestData = $request->all();
+       
+        if(!empty($requestData['password'])) { 
+            $requestData['password'] = Hash::make($requestData['password']);
         } else {
-            $input = Arr::except($input, array('password'));    
+            $requestData = Arr::except($input, array('password'));    
         }
-
-    
+       
         $user = User::find($id);
-        $user->update($input);
+       
+        // $user->update($requestData);
+        $user->name = $requestData['name'];
+        $user->email = $requestData['email']; 
+        $user->password = $requestData['password'];
+        $user->status = $requestData['status'];
+        $user->save();
 
         DB::table('model_has_roles')
             ->where('model_id', $id)

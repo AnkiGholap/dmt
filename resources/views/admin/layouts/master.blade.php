@@ -47,9 +47,8 @@
 
         <!-- REQUIRED SCRIPTS -->
         <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
         <!-- Bootstrap -->
         <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <!-- overlayScrollbars -->
@@ -77,38 +76,62 @@
         <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
         <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
 
-        {{-- 
-        <!-- DataTables  & Plugins -->
-        <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
-        <script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }}"></script>
-        <script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
-        <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script> --}}
-
         <script src="{{ asset('js/custom.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+       
  
         @yield('scripts')
         <script>
-            $(function() {
-            $('.select2').select2()
-            datepicker();
+        $.noConflict();
+        jQuery(document).ready(function($) {
+            $('.masterskus').repeater({
+                isFirstItemUndeletable: true,
+            });
 
-            //Initialize Select2 Elements
-            $('.select2bs4').select2({
-                theme: 'bootstrap4'
-            })
+            $('.removeMasterSku').on('click', function(e) {
 
-            // $('.datepicker').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-        })
+                var data_id = $(this).data('id');
+                var closeClass = $(this).closest('.mastersku');
 
+                if (data_id != '') {
+                    swal("You Really Want To Delete?", {
+                            buttons: {
+                                cancel: "Cancel",
+                                confirm: {
+                                    text: "Yes",
+                                    value: "Yes",
+                                },
+                            },
+                        })
+                        .then((value) => {
+                            if (value == "Yes") {
+                                $.ajax({
+                                    method: "POST",
+                                    url: "{{ route('removeMasterSku') }}",
+                                    data: {
+                                        _token: "{{ csrf_token() }}",
+                                        data_id: data_id,
+                                    },
+                                    success: function(response) {
+                                        if (response.status == "Done") {
+                                            closeClass.remove();
+                                            $('.successMsg1').html(response.message);
+                                            $('#successModal').modal('show');
+                                        } else {
+                                            $('.errorMsg1').html("Somthing Went Wrong Try Again");
+                                            $('#errorModal').modal('show');
+                                        }
+                                    }
+                                });
+                            } else {
+                                $('.errorMsg1').html('You Cancel The Task');
+                                $('#errorModal').modal('show');
+                            }
+                        });
+                }
+            });
+        });
+        </script>
+         <script>
         @if (\Session::has('success') || \Session::has('error'))
         
         

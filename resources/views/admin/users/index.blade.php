@@ -76,9 +76,8 @@
                                                     @endforeach
                                                 @endif
                                             </td>
-                                            <td><label
-                                                    class="badge badge-{{ $user->status == 'active' ? 'success' : 'danger' }}">{{ $user->status }}</label>
-                                            </td>
+                                            <td><label class="badge badge-{{ $user->status == 1 ? 'success' : 'danger' }}">{{ $user->status==1?'Active':'Inactive' }}</label></td>
+                                            <td>
                                             <td>
                                                 <a class="btn btn-success btn-sm"
                                                     href="{{ route('users.show', $user->id) }}">Show</a>

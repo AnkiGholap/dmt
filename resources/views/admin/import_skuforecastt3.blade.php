@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
-@section('title', 'Import Sku Forecast T3 Data')
+@section('title', 'Upload Sku Forecast T3 Data')
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Import Sku Forecast T3 Data</h1>
+                    <h1>Upload Sku Forecast T3 Data</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -27,7 +27,7 @@
                 <div class="col-12">
                     <div class="card card-success">
                         <div class="card-header">
-                            <h3 class="card-title">Import New Sku Forecast T3 Data</h3>
+                            <h3 class="card-title">Upload New Sku Forecast T3 Data</h3>
                         </div><br>
                         @if($errors->any())
                         <div class="alert alert-danger">
@@ -53,7 +53,7 @@
 
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <label>Import Lead File</label>
+                                            <label>Upload Lead File</label>
                                             <div class="custom-file">
                                                 <input type="file" name="file" id="file" class="custom-file-input" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required>
                                                 <label class="custom-file-label" for="file">Choose file</label>

@@ -67,8 +67,8 @@
         <div class="form-group">
             <label>Status</label>
             <select name="status" class="form-control">
-                <option value="1">Active</option>
-                <option value="0">Disabled</option>
+                <option value="1" @if(@$user->status && $user->status==1){{'selected'}}@endif>Active</option>
+                <option value="0" @if(@$user->status && $user->status==0){{'selected'}}@endif>Disabled</option>
             </select>
         </div>
     </div>

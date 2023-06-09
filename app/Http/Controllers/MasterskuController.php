@@ -27,7 +27,7 @@ class MasterskuController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $masterskus = Mastersku::where('name', 'LIKE', "%$keyword%")
+            $masterskus = Mastersku::where('mastersku', 'LIKE', "%$keyword%")
             ->latest()->paginate($perPage);
         } else {
             $masterskus = Mastersku::latest()->paginate($perPage);
@@ -63,6 +63,7 @@ class MasterskuController extends Controller
             Mastersku::create([
                 'category_id' => $requestData['category_id'],
                 'mastersku'=> $requestData['mastersku'][$i]['mastersku'],
+                'status'=>1
             ]);
         }
         return redirect('mastersku')->with('success', 'Master Sku updated!');
@@ -101,7 +102,27 @@ class MasterskuController extends Controller
     public function update(UpdateMasterskuRequest $request, Mastersku $mastersku)
     {
             $requestData = $request->all();
-            $mastersku ->update($requestData);
+            for($i=0;$i<count($requestData['mastersku']);$i++)
+            {
+
+                $existMasterSku = Mastersku::where('category_id',$requestData['category_id'])->where('mastersku',$requestData['mastersku'][$i]['mastersku'])->first();
+                
+                if(!empty($existMasterSku))
+                {
+                    $mastersku->update([
+                        'category_id' => $requestData['category_id'],
+                        'mastersku'=> $requestData['mastersku'][$i]['mastersku'],
+                    ]);
+                }
+                else{
+                    Mastersku::create([
+                        'category_id' => $requestData['category_id'],
+                        'mastersku'=> $requestData['mastersku'][$i]['mastersku'],
+                        'status'=>1
+                    ]);
+                }
+            }
+           
             return redirect('mastersku')->with('success', 'Master Sku updated!');
     }
 
