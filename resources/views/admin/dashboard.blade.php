@@ -3,7 +3,7 @@
   @section('content')
   <style>
     table {
-      font-family: arial, sans-serif;
+      font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
       border-collapse: collapse;
       width: 100%;
     }
@@ -12,6 +12,7 @@
       border: 1px solid #dddddd;
       text-align: left;
       padding: 8px;
+      font-size: 14px !important;
     }
     
     tr:nth-child(even) {
