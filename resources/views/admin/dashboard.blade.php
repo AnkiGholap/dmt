@@ -108,13 +108,15 @@
                <td>COVER</td>
                <td>STBM</td>
 
-               <td>{{@$sku->currentDateStock->actual_stock ? number_format($sku->currentDateStock->actual_stock) : '-'}}</td>
+               <td>{{@$sku->currentDateStock->actual_stock           ? number_format($sku->currentDateStock->actual_stock) : '-'}}</td>
 
-               <td>K</td>
+               <td>{{@$sku->poOrders->po_expected                    ? number_format($sku->poOrders->po_expected) : '-'}}</td>
+
                <td>L</td>
-               <td>M</td>
-               <td>N</td>
-               <td>O</td>
+               
+               <td>{{@$sku->poOrders->open_po_quantity               ? number_format($sku->poOrders->open_po_quantity) : '-'}}</td>
+               <td>{{@$sku->poOrders->next_inbound_quantity          ? number_format($sku->poOrders->next_inbound_quantity) : '-'}}</td>
+               <td>{{@$sku->poOrders->next_inbound_date              ? date('d-M-y',strtotime($sku->poOrders->next_inbound_date)) : '-'}}</td>
 
                <td>{{@$sku->skuPastTwoMonth->online                  ? number_format($sku->skuPastTwoMonth->online) : '-'}}</td>
                <td>{{@$sku->skuPastTwoMonth->offline_select          ? number_format($sku->skuPastTwoMonth->offline_select) : '-'}}</td>

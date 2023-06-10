@@ -14,6 +14,6 @@ class Purchaseorder extends Model
 
     public function sku()
     {
-        return $this->hasMany('App\Models\Sku','product_sku_id','id');
+        return $this->belongsTo('App\Models\Sku','product_sku_id');
     }
 }

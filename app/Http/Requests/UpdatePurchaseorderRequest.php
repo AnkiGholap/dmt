@@ -28,7 +28,7 @@ class UpdatePurchaseorderRequest extends FormRequest
             'po_expected'=>'required',
             'open_po_quantity'=>'required',
             'next_inbound_quantity'=>'required',
-            'next_bound_date'=>'required'
+            'next_inbound_date'=>'required'
         ];
     }
 }
