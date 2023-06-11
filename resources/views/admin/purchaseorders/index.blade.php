@@ -66,11 +66,12 @@
                             <tr>
                                 <td>{{ (($purchaseorders->currentPage() - 1 ) * $purchaseorders->perPage() ) + $loop->iteration }}</td>
                                 
-                                <td>{{ $item->sku->product_sku }}</td>
+                                <td>{{@$item->sku->sku_code }}</td>
                                 <td>{{$item->po_expected}}</td>
                                 <td>{{$item->open_po_quantity}}</td>
                                 <td>{{$item->next_inbound_quantity}}</td>
-                                <th>{{$item->next_inbound_date}}</th>
+                                <th>{{date('d-M-y',strtotime($item->next_inbound_date))}}</th>
+
                                 <td><label class="badge badge-{{ $item->status == 1 ? 'success' : 'danger' }}">{{ $item->status==1?'Active':'Inactive' }}</label></td>
                                 <td>
                                     @can('purchaseorder-edit')

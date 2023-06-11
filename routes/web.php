@@ -56,4 +56,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/skuForeCastT3Save',[SkuForcastT3Controller::class,'sku_forecast_t3_save'])->name('skuForeCastT3Save');
     Route::get('/actualStockImport',[ActualStockController::class,'actualstock_import'])->name('actualStockImport');
     Route::post('/actualStockSave',[ActualStockController::class,'actual_stock_save'])->name('actualStockSave');
+    Route::post('/filter-columns', [HomeController::class, 'filterColumns']);
+
 });

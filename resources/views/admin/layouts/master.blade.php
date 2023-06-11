@@ -75,9 +75,10 @@
         <!-- Toastr -->
         <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
         <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
-
+        <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script src="{{ asset('js/custom.js') }}"></script>
-       
+        
+
  
         @yield('scripts')
         <script>
@@ -131,6 +132,15 @@
             });
         });
         </script>
+        
+  <script>
+ 
+    /* Initialization of datatables */
+    jQuery(document).ready(function () {
+
+    }) 
+</script>
+
          <script>
         @if (\Session::has('success') || \Session::has('error'))
         

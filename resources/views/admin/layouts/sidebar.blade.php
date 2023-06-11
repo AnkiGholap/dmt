@@ -1,20 +1,16 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ url('/home') }}" class="brand-link">
-        <img src="{{ asset(get_from_setting('logo')) }}" alt="{{ get_from_setting('app_name') }}"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ get_from_setting('app_name') }}</span>
-    </a>
+   
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
+            <div class="image d-none">
                 <img src="{{ asset(get_from_setting('user_logo')) }}" class="img-circle elevation-2" alt="User Image">
             </div>
-            <div class="info">
+            <div class="info  text-center">
                 <a href="" #" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
@@ -33,7 +29,7 @@
                         class="nav-link {{ request()->is('home') == 'home' ? 'active' : null }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            Master Stock Data
                             {{-- <span class="badge badge-info right">2</span> --}}
                         </p>
                     </a>
