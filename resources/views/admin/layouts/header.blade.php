@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
-
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
   <style>
     .invalid-feedback{
       display: block !important;
