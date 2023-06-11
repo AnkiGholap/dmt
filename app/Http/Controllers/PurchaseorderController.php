@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePurchaseorderRequest;
 use App\Http\Requests\UpdatePurchaseorderRequest;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PurchaseorderController extends Controller
 {
@@ -58,9 +59,13 @@ class PurchaseorderController extends Controller
     public function store(StorePurchaseorderRequest $request)
     {
         $requestData = $request->all();
+        $date = Carbon::today();
+        $requestData['date']           = $date->day;
+        $requestData['month']          = $date->month;
+        $requestData['year']           = $date->year;
         Purchaseorder::create($requestData);
 
-        return redirect('purchaseorders')->with('success', 'Po added!');
+        return redirect('purchaseorders')->with('success', 'PO added!');
     }
 
     /**
@@ -96,7 +101,6 @@ class PurchaseorderController extends Controller
     public function update(UpdatePurchaseorderRequest $request, Purchaseorder $purchaseorder)
     {
         $requestData = $request->all();
-
         $purchaseorder ->update($requestData);
 
         return redirect('purchaseorders')->with('success', 'PO updated!');

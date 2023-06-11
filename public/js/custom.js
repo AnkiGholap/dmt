@@ -26,7 +26,8 @@ function getAge(fromdate, todate) {
 }
 
 var table = jQuery('#data-table').DataTable({
-  scrollY: '200px',
+  scrollX: true,
+  scrollY: true,
   paging: false,
 });
 
@@ -48,7 +49,7 @@ jQuery('.selectall').click(function() {
   if (jQuery(this).is(':checked')) {
       jQuery('.option').prop('checked', true);
       var total = jQuery('input[name="options[]"]:checked').length;
-      jQuery(".dropdown-text").html('(' + total + ') Selected');
+      //jQuery(".dropdown-text").html('(' + total + ') Selected');
       jQuery(".select-text").html(' Deselect');
   } else {
       jQuery('.option').prop('checked', false);
@@ -68,5 +69,5 @@ jQuery("input[type='checkbox'].justone").change(function(){
       jQuery(".select-text").html(' Select');
   }
 var total = jQuery('input[name="options[]"]:checked').length;
-jQuery(".dropdown-text").html('(' + total + ') Selected');
+//jQuery(".dropdown-text").html('(' + total + ') Selected');
 });

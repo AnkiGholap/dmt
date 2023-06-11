@@ -7,10 +7,10 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
+            <div class="image d-none">
                 <img src="{{ asset(get_from_setting('user_logo')) }}" class="img-circle elevation-2" alt="User Image">
             </div>
-            <div class="info">
+            <div class="info  text-center">
                 <a href="" #" class="d-block">{{ auth()->user()->name }}</a>
             </div>
         </div>
@@ -29,7 +29,7 @@
                         class="nav-link {{ request()->is('home') == 'home' ? 'active' : null }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            Master Stock Data
                             {{-- <span class="badge badge-info right">2</span> --}}
                         </p>
                     </a>

@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class Sku extends Model
 {
+    
     use HasFactory,SoftDeletes;
 
     protected $guarded = [];
@@ -31,7 +33,7 @@ class Sku extends Model
 
     public function po()
     {
-        return $this->belongsTo('App\Models\Purchaseorder','product_sku_id','id');
+        return $this->hasMany('App\Models\Purchaseorder','product_sku_id','id');
     }
 
     public function currentDateStock()
@@ -48,6 +50,11 @@ class Sku extends Model
 
         // return $this->hasOne('App\Models\Actualstock','product_sku_id','id')->whereDate('created_at',$date);
         return $this->hasOne('App\Models\Actualstock','product_sku_id','id')->orderBy('id','DESC');
+    }
+
+    public function poOrders()
+    {
+        return $this->hasOne('App\Models\Purchaseorder','product_sku_id','id')->orderBy('id','DESC');
     }
 
     public function skuPastTwoMonth()
