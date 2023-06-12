@@ -25,49 +25,46 @@ function getAge(fromdate, todate) {
   return age.join("");
 }
 
+
 var table = jQuery('#data-table').DataTable({
   scrollX: true,
   scrollY: true,
   paging: false,
+  'select': {
+    'style': 'multi',
+    'selector': 'td:first-child'
+  }  
 });
 
-jQuery('a.toggle-vis').on('click', function (e) {
-  e.preventDefault();
 
-  // Get the column API object
-  var column = table.column(jQuery(this).attr('data-column'));
+// jQuery('#dropdown').on('change', function (e) {
+//   e.preventDefault();
+//   var column1 = jQuery(this).children(':selected').attr('id');
+//   console.log(column1);
+//   // Get the column API object
+//   var column = table.column(column1);
+//   // Toggle the visibility
+//   column.visible(!column.visible());
+  
+// });
 
-  // Toggle the visibility
-  column.visible(!column.visible());
-});
+$(document).ready(function() {
 
-jQuery('body').on("click", ".dropdown-menu", function (e) {
-  jQuery(this).parent().is(".open") && e.stopPropagation();
-});
 
-jQuery('.selectall').click(function() {
-  if (jQuery(this).is(':checked')) {
-      jQuery('.option').prop('checked', true);
-      var total = jQuery('input[name="options[]"]:checked').length;
-      //jQuery(".dropdown-text").html('(' + total + ') Selected');
-      jQuery(".select-text").html(' Deselect');
-  } else {
-      jQuery('.option').prop('checked', false);
-      jQuery(".dropdown-text").html('(0) Selected');
-      jQuery(".select-text").html(' Select');
-  }
-});
-
-jQuery("input[type='checkbox'].justone").change(function(){
-  var a = jQuery("input[type='checkbox'].justone");
-  if(a.length == a.filter(":checked").length){
-      jQuery('.selectall').prop('checked', true);
-      jQuery(".select-text").html(' Deselect');
-  }
-  else {
-      jQuery('.selectall').prop('checked', false);
-      jQuery(".select-text").html(' Select');
-  }
-var total = jQuery('input[name="options[]"]:checked').length;
-//jQuery(".dropdown-text").html('(' + total + ') Selected');
+  jQuery('#columnSelector').multiselect({
+      includeSelectAllOption: true,
+      onSelectAll: function() {
+        jQuery.each([':eq(0)', ':eq(1)', ':eq(2)', ':eq(3)', ':eq(4)', ':eq(5)', ':eq(6)', ':eq(7)', ':eq(8)', ':eq(9)', ':eq(10)', ':eq(11)', ':eq(12)'], function(key, value) {
+            table.column(value).visible(true);
+          });
+      },
+      onDeselectAll: function() {
+        jQuery.each([':eq(0)', ':eq(1)', ':eq(2)', ':eq(3)', ':eq(4)', ':eq(5)', ':eq(6)', ':eq(7)', ':eq(8)', ':eq(9)', ':eq(10)', ':eq(11)', ':eq(12)'], function(key, value) {
+            table.column(value).visible(false);
+          });
+      },
+      onChange: function(option, checked) {
+        table.column(':eq(' + jQuery(option).val() + ')').visible(checked);
+      }
+  });
 });
