@@ -51,25 +51,24 @@
         </div>
         <!-- /.row -->
         
-
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="dropdown-text">Apply Filter</span>
+           <select id="columnSelector" class="form-control" multiple="multiple">
+            <option value="0">Item Name</option>
+            <option value="1">Master Sku</option>
+            <option value="2">Category</option>
+            <option value="3">Supplier</option>
+            <option value="4">Actual Stock</option>
+            <option value="5">SKU Code</option>
+            <option value="6">MRP</option>
+            <option value="7">Covered</option>
+            <option value="8">Stock To Be Maintained</option>
+            <option value="9">Tags</option>
+            <option value="10">PO expected to arrive in 15 Days</option>
+            <option value="11">Stock Excess / Shortage</option>
+            <option value="12">Open PO Qty</option>
            
-            <ul class="dropdown-menu">
-              <li><a href="#"><label><input type="checkbox" class="selectall" /><span class="select-text"> Select</span> All</label></a></li>
-              <li><a class="toggle-vis" data-column="0"><label><input name='options[]' type="checkbox" class="option justone" />Item Name</label></a></li>
-              <li><a class="toggle-vis" data-column="1"><label><input type="checkbox"  name='options[]' type="checkbox" class="option justone" />Master SKU</label></a></li>
-              <li><a class="toggle-vis" data-column="2"><label><input type="checkbox"  name='options[]' type="checkbox" class="option justone" />Category</label></a></li>
-              <li><a class="toggle-vis" data-column="3"><label><input type="checkbox"  name='options[]' type="checkbox" class="option ustone" />Supplier</label></a></li>
-              <li><a class="toggle-vis" data-column="4"><label><input type="checkbox"  name='options[]' type="checkbox" class="option ustone" />Actual Stock</label></a></li>
-              <li><a class="toggle-vis" data-column="5"><label><input type="checkbox"  name='options[]' type="checkbox" class="option justone"  />SKU Code</label></a></li>
-              <li><a class="toggle-vis" data-column="6"><label><input type="checkbox"  name='options[]' type="checkbox" class="option justone" />MRP</label></a></li>
-              <li><a class="toggle-vis" data-column="7"><label><input type="checkbox"  name='options[]' type="checkbox" class="option justone" />Covered</label></a></li>
-              <li><a class="toggle-vis" data-column="8"><label><input type="checkbox"  name='options[]' type="checkbox" class="option justone" />Stock To Be Maintained</label></a></li>
-              <li><a class="toggle-vis" data-column="9"><label><input type="checkbox"  name='options[]' type="checkbox" class="option justone" />Tags</label></a></li>
-            </ul>
-          </div>
-          
+           
+
+        </select>
           <!-- Add more checkboxes for each column you want to filter/hide/show -->
        
         <table id="data-table"  class="display" style="width:100%">
@@ -168,6 +167,8 @@
         <!-- /.row -->
 
         <!-- Main row -->
+
+     
        
         <!-- /.row -->
       </div><!--/. container-fluid -->
@@ -175,10 +176,4 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-@endsection
-
-@section('scripts')
-    
-
-    
 @endsection

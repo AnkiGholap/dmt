@@ -76,12 +76,12 @@
         <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
         <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-        <script src="{{ asset('js/custom.js') }}"></script>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
 
- 
+        <script src="{{ asset('js/custom.js') }}"></script>
+
         @yield('scripts')
-        <script>
+    <script>
         $.noConflict();
         jQuery(document).ready(function($) {
             $('.masterskus').repeater({
@@ -131,42 +131,31 @@
                 }
             });
         });
-        </script>
-        
-  <script>
- 
-    /* Initialization of datatables */
-    jQuery(document).ready(function () {
 
-    }) 
-</script>
+                @if (\Session::has('success') || \Session::has('error'))
+                
+                
+                    window.setTimeout(function() {
+                    $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+                        $(this).remove();
+                    });
+                    }, 10000);
+                @endif
 
-         <script>
-        @if (\Session::has('success') || \Session::has('error'))
-        
-        
-            window.setTimeout(function() {
-            $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
-                $(this).remove();
-            });
-            }, 10000);
-        @endif
+                function datepicker(params) {
 
-        function datepicker(params) {
+                    $('[data-mask]').inputmask()
 
-            $('[data-mask]').inputmask()
-
-            $('.datepicker').datepicker({
-                format: "dd/mm/yyyy",
-                autoclose: true,
-            }).on('changeDate', function(ev) {
-                $(this).datepicker('hide');
-            });
+                    $('.datepicker').datepicker({
+                        format: "dd/mm/yyyy",
+                        autoclose: true,
+                    }).on('changeDate', function(ev) {
+                        $(this).datepicker('hide');
+                    });
 
 
-        }
+                }
 
-        </script>
-    </body>
-
+    </script>
+</body>
 </html>
