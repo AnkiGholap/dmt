@@ -1,7 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-   
+    <img src="{{ asset(get_from_setting('logo')) }}" alt="{{ get_from_setting('app_name') }}"
+            class="brand-image img-circle elevation-3" style="opacity: .8;margin-left: 20%;
+            width: 30%;">
 
     <!-- Sidebar -->
     <div class="sidebar">

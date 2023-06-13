@@ -55,8 +55,12 @@
         -webkit-appearance: none;
         margin: 0;
     }
+   .sidebar{margin-top: 1% !important;}
+   .multiselect-container {
+    z-index: 999999;
+   }
 
-    
+
   </style>
 
 </head>
