@@ -51,7 +51,7 @@ var table = jQuery('#data-table').DataTable({
 $(document).ready(function() {
 
 
-  jQuery('#columnSelector').multiselect({
+  var columnSelector = jQuery('#columnSelector').multiselect({
       includeSelectAllOption: true,
       onSelectAll: function() {
         jQuery.each([':eq(0)', ':eq(1)', ':eq(2)', ':eq(3)', ':eq(4)', ':eq(5)', ':eq(6)', ':eq(7)', ':eq(8)', ':eq(9)', ':eq(10)', ':eq(11)', ':eq(12)'], function(key, value) {
@@ -65,6 +65,10 @@ $(document).ready(function() {
       },
       onChange: function(option, checked) {
         table.column(':eq(' + jQuery(option).val() + ')').visible(checked);
-      }
+      },
   });
+  columnSelector.multiselect('selectAll', false);
+    
+  // Refresh the multiselect to apply the 'selectAll' function
+  columnSelector.multiselect('refresh');
 });
