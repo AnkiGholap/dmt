@@ -2,6 +2,7 @@
   @extends('admin.layouts.master')
   @section('content')
   <style>
+    
     table {
       font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
       border-collapse: collapse;
@@ -19,7 +20,7 @@
       background-color: #dddddd;
     }
     </style>
-  @section('title', 'Master Stock Data')
+  @section('title', 'Dasboard')
   <!-- Content Wrapper. Contains page content -->
  
   <div class="content-wrapper">
@@ -28,7 +29,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Master Stock Data</h1>
+            <h1 class="m-0" style="text-align: right">Dasboard</h1>
           </div><!-- /.col --><br><br><br>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -45,134 +46,181 @@
     <section class="content">
       <div class="container-fluid">
         <!-- Info boxes -->
-        <div class="row">          
+        <div class="row">   
+          <div class="col-md-2">       
           <!-- /.col -->
-          
+          @if(!empty($categories))
+           <select id="category" class="form-control select2" name="category" multiple>
+               <option value="">Filter Category</option>
+               @foreach($categories as $k=>$v)
+                   <option value="{{$k}}">{{$v}}</option>
+               @endforeach
+           </select>
+          @endif 
+          </div>
+          <div class="col-md-2">       
           <!-- /.col -->
-        </div>
+          @if(!empty($masterskus))
+           <select id="mastersku" class="form-control select2" name="mastersku" multiple>
+            <option value="">Filter Mastersku</option>
+            @foreach($masterskus as $k=>$v)
+              <option value="{{$k}}">{{$v}}</option>
+            @endforeach
+           </select>
+          @endif 
+          </div>
+          <div class="col-md-2">       
+          <!-- /.col -->
+          @if(!empty($skus))
+           <select id="skus" class="form-control select2" name="skus" multiple>
+            <option value="">Filter Skus</option>
+            @foreach($skus as $k=>$v)
+              <option value="{{$k}}">{{$v}}</option>
+            @endforeach
+           </select>
+          @endif 
+          </div>
+          <div class="col-md-2">       
+          <!-- /.col -->
+          @if(!empty($suppliers))
+           <select id="suppliers" class="form-control select2" name="suppliers" multiple>
+            <option value="">Filter Suppliers</option>
+               @foreach($suppliers as $k=>$v)
+                   <option value="{{$k}}">{{$v}}</option>
+               @endforeach
+           </select>
+          @endif 
+          </div>
+          <div class="filter">
+            <button class="btn btn-dark" id="searchfilter">Apply Filter</button>
+                    <!-- /.col -->
+          </div>
+          <div class="filter">
+           <button class="btn btn-dark" id="salesid">Top 25 Sales</button>
+          </div>
+          <div class="filter">
+            <a id="stockid"><button class="btn btn-dark" id="top25stocks">Top 25 Stocks</button></a>
+          </div>
+          <br><br>
         <!-- /.row -->
-        
-           <select id="columnSelector" class="form-control" multiple="multiple">
-            <option value="0">Item Name</option>
-            <option value="1">Master Sku</option>
-            <option value="2">Category</option>
-            <option value="3">Supplier</option>
-            <option value="4">Actual Stock</option>
-            <option value="5">SKU Code</option>
-            <option value="6">MRP</option>
-            <option value="7">Covered</option>
-            <option value="8">Stock To Be Maintained</option>
-            <option value="9">Tags</option>
-            <option value="10">PO expected to arrive in 15 Days</option>
-            <option value="11">Stock Excess / Shortage</option>
-            <option value="12">Open PO Qty</option>
-           
-           
-
-        </select>
-          <!-- Add more checkboxes for each column you want to filter/hide/show -->
-       
-        <table id="data-table"  class="display" style="width:100%">
+        </div>
+          
+          <!-- Ad(d more checkboxes for each column you want to filter/hide/show -->
+       @if(!empty($skudata))
+       <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Dashboard</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+        <table class="display data-table" style="width:100%">
           <thead>
           <tr>
+            <th>SKU Code</th>
             <th>Item Name</th>
             <th>Master SKU</th>
             <th>Category</th>
             <th>Supplier</th>
             <th>Actual Stock</th>
-            <th>SKU Code</th>
-            <th>MRP</th>
-            <th>Cover</th>
-            <th>Stock To Be Maintained</th>
-            <th>Tags</th>
-            <th>PO expected to arrive in 15 Days</th>
-            <th>Stock Excess / Shortage</th>
-            <th>Open PO Qty</th>
-            <th>Next Inbound Quantity</th>
-            <th>Next Inbound Date</th>
-            <th>T-2 month Online</th>
-            <th>T-2 month Offline Select</th>
-            <th>T-2 month Offline Mass</th>
-            <th>T-1 month Online</th>
-            <th>T-1 month Offline Select</th>
-            <th>T-1 month Offline Mass</th>
-            <th>T month Online</th>
-            <th>T month Offline Select</th>
-            <th>T month Offline Mass</th>
-            <th>T+1 month Online</th>
-            <th>T+1 month Offline Select</th>
-            <th>T+1 month Offline Mass</th>
-            <th>T+2 month Online</th>
-            <th>T+2 month Offline Select</th>
-            <th>T+2 month Offline Mass</th>
-            <th>T+3 month Online</th>
-            <th>T+3 month Offline Select</th>
-            <th>T+3 month Offline Mass</th>
-            <th>Remarks</th>
+          
           </tr>
         </thead>
         <tbody>
           @php 
             $srNo = 1;
           @endphp
-          @foreach($skus as $key => $sku)
+          @foreach($skudata as $key => $sku)
             <tr>
-               <td>{{$sku->name ? $sku->name :'-' }}</td>
-               <td>{{@$sku->mastersku->mastersku ? $sku->mastersku->mastersku : '-'}}</td>
-               <td>{{@$sku->category->name ? $sku->category->name : '-'}}</td>
-               <td>{{@$sku->supplier->name ? $sku->supplier->name : '-'}}</td>
-               <td>{{@$sku->currentDateStock->actual_stock           ? number_format($sku->currentDateStock->actual_stock) : '-'}}</td>
-               <td>{{$sku->sku_code ? $sku->sku_code : '-' }}</td>
-               <td>{{@$sku->price ? $sku->price : '-' }}</td>
-               <td>COVER</td>
-               <td>STBM</td>
-               <td>TAGS</td>
-               
-               <td>{{@$sku->poOrders->po_expected                    ? number_format($sku->poOrders->po_expected) : '-'}}</td>
-
-               <td>L</td>
-               
-               <td>{{@$sku->poOrders->open_po_quantity               ? number_format($sku->poOrders->open_po_quantity) : '-'}}</td>
-               <td>{{@$sku->poOrders->next_inbound_quantity          ? number_format($sku->poOrders->next_inbound_quantity) : '-'}}</td>
-               <td>{{@$sku->poOrders->next_inbound_date              ? date('d-M-y',strtotime($sku->poOrders->next_inbound_date)) : '-'}}</td>
-
-    <td>{{@$sku->skuPastTwoMonth->online                  ? number_format($sku->skuPastTwoMonth->online) : '-'}}</td>
-    <td>{{@$sku->skuPastTwoMonth->offline_select          ? number_format($sku->skuPastTwoMonth->offline_select) : '-'}}</td>
-    <td>{{@$sku->skuPastTwoMonth->offline_mass            ? number_format($sku->skuPastTwoMonth->offline_mass) : '-'}}</td>  
-
-    <td>{{@$sku->skuPastTwoMonth->online                  ? number_format($sku->skuPastTwoMonth->online) : '-'}}</td>
-    <td>{{@$sku->skuPastTwoMonth->offline_select          ? number_format($sku->skuPastTwoMonth->offline_select) : '-'}}</td>
-    <td>{{@$sku->skuPastTwoMonth->offline_mass            ? number_format($sku->skuPastTwoMonth->offline_mass) : '-'}}</td>    
-
-    <td>{{@$sku->actualSalesData()                        ? number_format($sku->actualSalesData()->sum('t_month_online')) : '-'}}</td>
-    <td>{{@$sku->actualSalesData()                        ? number_format($sku->actualSalesData()->sum('t_month_offline_select')) : '-'}}</td>
-    <td>{{@$sku->actualSalesData()                        ? number_format($sku->actualSalesData()->sum('t_month_offline_mass')) : '-'}}</td>    
-
-    <td>{{@$sku->skuforcastt1->online                     ? number_format($sku->skuforcastt1->online) : '-'}}</td>
-    <td>{{@$sku->skuforcastt1->offline_select             ? number_format($sku->skuforcastt1->offline_select) : '-'}}</td>
-    <td>{{@$sku->skuforcastt1->offline_mass               ? number_format($sku->skuforcastt1->offline_mass) : '-'}}</td>
-
-    <td>{{@$sku->skuforcastt2->online                     ? number_format($sku->skuforcastt2->online) : '-'}}</td>
-    <td>{{@$sku->skuforcastt2->offline_select             ? number_format($sku->skuforcastt2->offline_select) : '-'}}</td>
-    <td>{{@$sku->skuforcastt2->offline_mass               ? number_format($sku->skuforcastt2->offline_mass) : '-'}}</td>
-
-    <td>{{@$sku->skuforcastt3->online                     ? number_format($sku->skuforcastt3->online) : '-'}}</td>
-    <td>{{@$sku->skuforcastt3->offline_select             ? number_format($sku->skuforcastt3->offline_select) : '-'}}</td>
-    <td>{{@$sku->skuforcastt3->offline_mass               ? number_format($sku->skuforcastt3->offline_mass) : '-'}}</td>
-    <td></td>                
+              <td>{{$sku->sku_code ? $sku->sku_code : '-' }}</td>
+              <td>{{$sku->name ? $sku->name :'-' }}</td>
+              <td>{{@$sku->mastersku->mastersku ? $sku->mastersku->mastersku : '-'}}</td>
+              <td>{{@$sku->category->name ? $sku->category->name : '-'}}</td>
+              <td>{{@$sku->supplier->name ? $sku->supplier->name : '-'}}</td>
+<td>{{@$sku->currentDateStock->actual_stock? number_format($sku->currentDateStock->actual_stock) : '-'}}</td>
+             
+             
             </tr>
           @endforeach
           </tbody>
         </table>
-
+        </div>
+       </div>
+      </div>
+       @endif  
         <!-- /.row -->
 
         <!-- Main row -->
+        <div id="stockiddiv">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Top 25 Stock Data</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>SKU Code</th>
+                  <th>Item Name</th>
+                  <th>Actual Stock</th>
+                </tr>
+              </thead>
+              <tbody>
+               
+                @foreach($top25stock as $key => $item)
+                  <tr>
+                    <td>{{$item->sku_code ? $item->sku_code : '-' }}</td>
+                    <td>{{$item->name ? $item->name :'-' }}</td>
+  <td>{{@$item->actual_stock? number_format($item->actual_stock) : '-'}}</td>
+                  </tr>
+                @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
 
-     
-       
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
+        <div id="salesiddiv">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                  <h3 class="card-title">Top 25 Sales Data</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>SKU Code</th>
+                    <th>Item Name</th>
+                    <th>T1 Month Online</th>
+                    <th>T1 Month Offline Select</th>
+                    <th>T1 Month Offline Mass</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                  @foreach($top25sales as $key => $item)
+                    <tr>
+                      <td>{{$item->sku_code ? $item->sku_code : '-' }}</td>
+                      <td>{{$item->name ? $item->name :'-' }}</td>
+    <td>{{@$item->t1_month_online? number_format($item->t1_month_online) : '-'}}</td>
+    <td>{{@$item->t1_month_offline_select? number_format($item->t1_month_offline_select) : '-'}}</td>
+    <td>{{@$item->t1_month_offline_mass? number_format($item->t1_month_offline_mass) : '-'}}</td> 
+                    </tr>
+                  @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+  
+        <!--/. container-fluid -->
     </section>
     <!-- /.content -->
   </div>

@@ -26,49 +26,132 @@ function getAge(fromdate, todate) {
 }
 
 
-var table = jQuery('#data-table').DataTable({
+var table = jQuery('.data-table').DataTable({
   scrollX: true,
   scrollY: true,
   paging: false,
-  'select': {
-    'style': 'multi',
-    'selector': 'td:first-child'
-  }  
 });
 
-
-// jQuery('#dropdown').on('change', function (e) {
-//   e.preventDefault();
-//   var column1 = jQuery(this).children(':selected').attr('id');
-//   console.log(column1);
-//   // Get the column API object
-//   var column = table.column(column1);
-//   // Toggle the visibility
-//   column.visible(!column.visible());
-  
-// });
-
-$(document).ready(function() {
-
-
-  var columnSelector = jQuery('#columnSelector').multiselect({
-      includeSelectAllOption: true,
-      onSelectAll: function() {
-        jQuery.each([':eq(0)', ':eq(1)', ':eq(2)', ':eq(3)', ':eq(4)', ':eq(5)', ':eq(6)', ':eq(7)', ':eq(8)', ':eq(9)', ':eq(10)', ':eq(11)', ':eq(12)'], function(key, value) {
-            table.column(value).visible(true);
-          });
-      },
-      onDeselectAll: function() {
-        jQuery.each([':eq(0)', ':eq(1)', ':eq(2)', ':eq(3)', ':eq(4)', ':eq(5)', ':eq(6)', ':eq(7)', ':eq(8)', ':eq(9)', ':eq(10)', ':eq(11)', ':eq(12)'], function(key, value) {
-            table.column(value).visible(false);
-          });
-      },
-      onChange: function(option, checked) {
-        table.column(':eq(' + jQuery(option).val() + ')').visible(checked);
-      },
+jQuery(document).ready(function() {
+  jQuery("#stockid").on('click',function() {
+    jQuery('html, body').animate({
+        scrollTop: jQuery("#stockiddiv").offset().top
+    }, 2000);
   });
-  columnSelector.multiselect('selectAll', false);
-    
-  // Refresh the multiselect to apply the 'selectAll' function
-  columnSelector.multiselect('refresh');
-});
+
+  jQuery("#salesid").on('click',function() {
+    jQuery('html, body').animate({
+        scrollTop: jQuery("#salesiddiv").offset().top
+    }, 2000);
+  });
+      
+      jQuery("#category").select2({
+          theme: "classic",
+          placeholder:"Filter Category"
+      }); 
+      jQuery("#mastersku").select2({
+        theme: "classic",
+        placeholder:"Filter Master Sku"
+      }); 
+      jQuery("#skus").select2({
+        theme: "classic",
+        placeholder:"Filter Skus"
+      }); 
+      jQuery("#suppliers").select2({
+        theme: "classic",
+        placeholder:"Filter Supplier"
+      }); 
+     jQuery("#category").on("change",function(){
+        var id = jQuery(this).val();
+        
+        jQuery.ajax({
+              method: "POST",
+              url: "fetchDropdownData",
+              data: {
+                  id: id
+              },
+              success: function(response) 
+              {
+                 var result = jQuery.parseJSON(response);
+                 jQuery("#mastersku").html(result[0]);
+                 jQuery('.mastersku').trigger('change'); 
+                 
+                 jQuery("#skus").html(result[1]);
+                 jQuery('.skus').trigger('change'); 
+              }
+        });
+     })
+
+        jQuery("#searchfilter").on('click',function(){
+              
+          var categoryArray =  jQuery("#category").val();
+          var masterskuArray = jQuery("#mastersku").val();
+          var skuArray = jQuery("#sku").val();
+          var supplierArray = jQuery("#supplier").val();
+          
+          var newurl = '';
+          if(categoryArray != null && categoryArray != '')
+          {
+              if(newurl != '')
+              {
+                  newurl += '&category='+categoryArray;
+              }
+              else
+              {
+                  newurl += '?category='+categoryArray;
+              }   
+          }
+
+        
+          if(masterskuArray != null && masterskuArray != '')
+          {
+              if(newurl != '')
+              {
+                  newurl += '&mastersku='+masterskuArray;
+              }
+              else
+              {
+                  newurl += '?mastersku='+masterskuArray;
+              }   
+          }
+
+          if(skuArray != null && skuArray != '')
+          {
+              if(newurl != '')
+              {
+                  newurl += '&skus='+skuArray;
+              }
+              else
+              {
+                  newurl += '?skus='+skuArray;
+              }   
+          }
+
+          if(supplierArray != null && supplierArray != '')
+          {
+              if(newurl != '')
+              {
+                  newurl += '&suppliers='+supplierArray;
+              }
+              else
+              {
+                  newurl += '?suppliers='+supplierArray;
+              }   
+          }
+
+          
+          if(newurl != '')
+          {
+              window.history.pushState({ path: newurl }, '', newurl);
+          }
+          else
+          {
+              var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+              window.history.pushState({ path: newurl }, '', newurl); 
+          }
+        
+        window.location.href = newurl;
+    });
+  })
+
+

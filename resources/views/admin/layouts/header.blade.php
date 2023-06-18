@@ -17,6 +17,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
@@ -26,10 +27,10 @@
   <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
-
-  <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.cs')}}s">
+  
+  {{-- <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.cs')}}s"> --}}
   <!-- Select2 -->
-  <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+  {{-- <link rel="stylesheet" href="{{asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}"> --}}
   <link rel="stylesheet" href="{{asset('plugins/datepicker/datepicker.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <!-- Toastr -->
@@ -45,10 +46,14 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" />
   <style>
+    .main-header {margin-left: 0px !important;}
+    .content-wrapper{margin-left: 0px !important;}
+    .main-footer{margin-left: 0px !important}
+    .nav-link.active{background-color: #000 !important;color: #fff !important;}
     .invalid-feedback{
       display: block !important;
     }
-
+     .select2-search__field{width:100% !important;}
 
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
@@ -59,8 +64,9 @@
    .multiselect-container {
     z-index: 999999;
    }
-
-
+   .filter{max-width: 15% !important;padding-left: 15px;}
+   #data-table_filter{margin-top: -8% !important;}
+   
   </style>
 
 </head>

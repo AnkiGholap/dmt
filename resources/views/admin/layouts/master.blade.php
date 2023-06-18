@@ -24,7 +24,7 @@
             <!-- /.navbar -->
 
             <!-- Sidebar -->
-            @include('admin/layouts/sidebar')
+            {{-- @include('admin/layouts/sidebar') --}}
             <!-- /.Sidebar -->
 
             {{-- @include('admin/dashboard') --}}
@@ -49,6 +49,7 @@
         <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
         <!-- Bootstrap -->
         <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <!-- overlayScrollbars -->
@@ -64,7 +65,7 @@
         <script src="{{ asset('plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
         <!-- ChartJS -->
         <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
-        <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+         
 
         <!-- InputMask -->
         <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>

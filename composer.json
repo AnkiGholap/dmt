@@ -16,7 +16,8 @@
         "maatwebsite/excel": "*",
         "realrashid/sweet-alert": "^5.0",
         "spatie/laravel-activitylog": "^3.17",
-        "spatie/laravel-permission": "^4.2"
+        "spatie/laravel-permission": "^4.2",
+        "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
         "appzcoder/crud-generator": "^3.2",

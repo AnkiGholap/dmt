@@ -30,6 +30,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/masterdata', [HomeController::class, 'masterdata'])->name('masterdata');
+    Route::post('/fetchDropdownData', [HomeController::class, 'fetch_dropdown_data'])->name('fetchDropdownData');
+    Route::get('search-filter',[HomeController::class,'searchfilter'])->name('search-filter');
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
