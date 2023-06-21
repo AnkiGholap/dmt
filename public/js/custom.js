@@ -33,6 +33,25 @@ var table = jQuery('.data-table').DataTable({
 });
 
 jQuery(document).ready(function() {
+  jQuery(".secondarymenu").on('click',function() {
+    var url = jQuery(this).data('url');
+        
+      jQuery.ajax({
+            method: "GET",
+            url: url,
+            dataType : 'html',
+            data: {
+                
+            },
+            success: function(response) 
+            {
+                console.log(response);
+               jQuery(".uploadviews").empty();
+               jQuery(".uploadviews").html(response);
+            }
+      });
+  });
+
   jQuery("#stockid").on('click',function() {
     jQuery('html, body').animate({
         scrollTop: jQuery("#stockiddiv").offset().top

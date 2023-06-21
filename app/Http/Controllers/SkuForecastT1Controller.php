@@ -20,7 +20,7 @@ class SkuForecastT1Controller extends Controller
     
     public function sku_forecast_t1_import()
     {
-        return view('admin.import_skuforecastt1');
+        return view('admin.import_skuforecastt1new');
     }
 
     public function sku_forecast_t1_save(Request $request)
@@ -77,7 +77,8 @@ class SkuForecastT1Controller extends Controller
                     $Skuforecastt1->save();
                 }    
             }        
-            return redirect()->route('skuForeCastT1Import')->with('success', 'Sku forecast Imported Successfully!');
+            //return redirect()->route('skuForeCastT1Import')->with('success', 'Sku forecast Imported Successfully!');
+            return redirect()->route('upload')->with('success', 'Sku forecast Imported Successfully!');
         }
         catch(\Exception $e)
         {

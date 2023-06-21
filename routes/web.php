@@ -60,5 +60,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/actualStockImport',[ActualStockController::class,'actualstock_import'])->name('actualStockImport');
     Route::post('/actualStockSave',[ActualStockController::class,'actual_stock_save'])->name('actualStockSave');
     Route::post('/filter-columns', [HomeController::class, 'filterColumns']);
-
+    Route::get('upload',[SkuController::class,'upload'])->name('upload');
 });

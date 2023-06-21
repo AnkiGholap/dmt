@@ -1,3 +1,9 @@
+<style>
+  .btn-primary{
+    background-color: #343a40 !important;
+    border:#343a40 !important; 
+  }
+</style>
 <nav class="main-header navbar navbar-expand navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -12,7 +18,7 @@
         </a>
     </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('/home')}}" class="nav-link">Upload</a>
+        <a href="{{url('/upload')}}" class="nav-link">Upload</a>
       </li>
      
       <li class="nav-item {{ request()->is('masterdata') == 'masterdata' ? 'menu-open' : null }}">
@@ -52,3 +58,18 @@
     <!-- Right navbar links -->
    
   </nav>
+<br><br>
+<div class="nav2">
+<nav class="navbar2">
+  <ul>
+    <li><a href="javascript:void(0);" data-url="/skus/create" class="nav-link secondarymenu">Add Sku</a></li>
+    <li><a href="javascript:void(0);" data-url="/mastersku/create" class="nav-link secondarymenu">Add Master Sku</a></li>
+    <li><a href="javascript:void(0);" data-url="/categories/create" class="nav-link secondarymenu">Add Category</a></li>
+    <li><a href="javascript:void(0);" data-url="/suppliers/create" class="nav-link secondarymenu">Add Suppliers</a></li>
+    <li><a href="javascript:void(0);" data-url="/actualStockImport" class="nav-link secondarymenu">Add Actual Stock</a></li>
+    <li><a href="javascript:void(0);" data-url="/salesdataImport" class="nav-link secondarymenu">Add Actual Sales</a></li>
+    <li><a href="javascript:void(0);" data-url="/skuForeCastT1Import" class="nav-link secondarymenu">Add Forcast</a></li>
+  </ul>
+</nav>  
+</div>
+  

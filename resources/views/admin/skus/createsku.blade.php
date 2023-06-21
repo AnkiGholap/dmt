@@ -1,14 +1,13 @@
-@extends('admin.layouts.master')
 @section('content')
 @section('title', 'Create Skus')
 <div class="content-wrapper">
     <section class="content-header">
-        <div class="container-fluid">
+        <div class="container-fluid ">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Create Skus</h1>
+                   
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <ol class="breadcrumb float-sm-right">
                         @can('sku-create')
                         <div>
@@ -24,7 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-success">
+                    <div class="card card-dark">
                         <div class="card-header">
                             <h3 class="card-title">Create New Skus</h3>
                         </div>
@@ -44,6 +43,3 @@
         </div>
     </section>
 </div>
-
-@endsection
-

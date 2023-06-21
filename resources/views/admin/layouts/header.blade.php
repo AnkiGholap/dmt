@@ -66,7 +66,29 @@
    }
    .filter{max-width: 15% !important;padding-left: 15px;}
    #data-table_filter{margin-top: -8% !important;}
-   
+   .navbar2 {
+  background-color: #fff;
+}
+
+.navbar2 ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbar2 li {
+  display: inline-block;
+}
+
+.navbar2 li a {
+  display: block;
+  padding: 10px;
+  color: #000;
+}
+
+.nav2{position: fixed;top: 12%;padding-left: 1%}
+.sectionbox{margin-top: 13%;}
   </style>
 
 </head>

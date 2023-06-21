@@ -21,7 +21,7 @@ class SalesdataController extends Controller
 
     public function sales_data_import()
     {
-        return view('admin.import_salesdata');
+        return view('admin.import_salesdatanew');
     }
 
     public function sales_data_save(Request $request)
@@ -152,7 +152,8 @@ class SalesdataController extends Controller
                     }
                 }    
             }        
-            return redirect()->route('skuForeCastT1Import')->with('success', 'Sku forecast for T1 Imported!');
+           // return redirect()->route('skuForeCastT1Import')->with('success', 'Sku forecast for T1 Imported!');
+           return redirect()->route('upload')->with('success', 'Sku forecast Imported Successfully!');
         }
         catch(\Exception $e)
         {
