@@ -12,4 +12,6 @@ class Actualstock extends Model
 
     protected $guarded = [];
 
+    
+
 }

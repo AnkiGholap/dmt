@@ -44,7 +44,7 @@ class MasterskuController extends Controller
     public function create()
     {
         $category = Category::where('status',1)->get();
-        return view('admin.masterskus.create',compact('category'));
+        return view('admin.masterskus.createupload',compact('category'));
     }
 
     /**

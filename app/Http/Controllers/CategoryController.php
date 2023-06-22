@@ -45,7 +45,7 @@ class CategoryController extends Controller
     {
         $categories = Category::orderby('name', 'asc')->get();
 
-        return view('admin.categories.create',compact('categories'));
+        return view('admin.categories.createcategory',compact('categories'));
     }
 
     /**

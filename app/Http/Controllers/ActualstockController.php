@@ -21,7 +21,7 @@ class ActualstockController extends Controller
     
     public function actualstock_import()
     {
-        return view('admin.import_actualstock');
+        return view('admin.import_actualstocknew');
     }
 
     public function actual_stock_save(Request $request)
@@ -73,7 +73,8 @@ class ActualstockController extends Controller
                     // }
                 }    
             }        
-            return redirect()->route('actualStockImport')->with('success', 'Actual Stock Data Imported!');
+            // return redirect()->route('actualStockImport')->with('success', 'Actual Stock Data Imported!');
+            return redirect()->route('upload')->with('success', 'Sku forecast Imported Successfully!');
         }
         catch(\Exception $e)
         {
