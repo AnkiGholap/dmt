@@ -1,6 +1,6 @@
-
-  @extends('admin.layouts.master')
-  @section('content')
+@extends('admin.layouts.master')
+@section('content')
+@section('title', 'Dashboard')
   <style>
     
     table {
@@ -19,17 +19,17 @@
     tr:nth-child(even) {
       background-color: #dddddd;
     }
-    </style>
-  @section('title', 'Dasboard')
+    </style>  
+
   <!-- Content Wrapper. Contains page content -->
  
-  <div class="content-wrapper">
+  {{-- <div class="content-wrapper"> --}}
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mt-2">
           <div class="col-sm-6">
-            <h1 class="m-0" style="text-align: right">Dasboard</h1>
+            <h1 class="m-0" style="text-align: right">Dashboard</h1>
           </div><!-- /.col --><br><br><br>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -39,7 +39,7 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
-    </div>
+    {{-- </div> --}}
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -47,6 +47,9 @@
       <div class="container-fluid">
           <!-- Info boxes -->
           <div class="row">   
+            <div class="col-md-1">       
+               <label>Filter By : </label>
+            </div>
             <div class="col-md-2">       
               <!-- /.col -->
               @if(!empty($categories))
@@ -107,9 +110,9 @@
           
           <!-- Ad(d more checkboxes for each column you want to filter/hide/show -->
           @if(!empty($skudata))
-              <div class="card">
+              <div class="card mt-3">
                   <div class="card-header">
-                      <h3 class="card-title">Dashboard</h3>
+                      <h3 class="card-title"><strong>Dashboard</strong></h3>
                   </div>
                 <!-- /.card-header -->
                   <div class="card-body">
@@ -154,7 +157,7 @@
                 <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Top 25 Stock Data</h3>
+                    <h3 class="card-title"><strong>Top 25 Stock Data</strong></h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -187,7 +190,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                  <h3 class="card-title">Top 25 Sales Data</h3>
+                  <h3 class="card-title"><strong>Top 25 Sales Data</strong></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

@@ -2,7 +2,7 @@
 @section('content')
 @section('title', 'Show Category')
 
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         @include('admin.layouts.alert')
         <div class="container-fluid">
@@ -59,7 +59,7 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 
 
 @endsection

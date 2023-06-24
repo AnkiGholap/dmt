@@ -1,19 +1,19 @@
 @extends('admin.layouts.master')
 @section('content')
 @section('title', 'Create Category')
-<div class="content-wrapper">
+{{-- <div class="content-wrapper"> --}}
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Create Category</h1>
+                    {{-- <h1>Create Category</h1> --}}
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        @can('Category-create')
-                        <div>
-                            <a href="{{ url('/categories') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button"> <i class="fa fa-arrow-left"></i> Back</a> 
-                        </div>
+                        @can('category-viewAny')
+                            <div>
+                                <a href="{{ url('/categories') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button"> <i class="fa fa-arrow-left"></i> Back</a> 
+                            </div>
                         @endcan
                     </ol>
                 </div>
@@ -43,7 +43,7 @@
             </div>
         </div>
     </section>
-</div>
+{{-- </div> --}}
 
 @endsection
 

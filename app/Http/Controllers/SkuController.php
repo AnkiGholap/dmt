@@ -50,7 +50,7 @@ class SkuController extends Controller
         $category = Category::where('status',1)->get();
         $supplier = Supplier::where('status',1)->get();
         $mastersku = Mastersku::where('status',1)->get();
-        return view('admin.skus.createsku', compact('category','supplier','mastersku'));
+        return view('admin.skus.create', compact('category','supplier','mastersku'));
     }
 
     /**

@@ -20,7 +20,7 @@ class SkuForecastT1Controller extends Controller
     
     public function sku_forecast_t1_import()
     {
-        return view('admin.import_skuforecastt1new');
+        return view('admin.import_skuforecastt1');
     }
 
     public function sku_forecast_t1_save(Request $request)
