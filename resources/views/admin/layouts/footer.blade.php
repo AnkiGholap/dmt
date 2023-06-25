@@ -1,4 +1,4 @@
- <footer class="main-footer">
+ <footer class="main-footer" style="text-align: center;">
     <strong>Copyright &copy; 2021-2022 <a href="#">{{ get_from_setting('app_name') }}</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">

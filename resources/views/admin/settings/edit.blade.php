@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('content')
 @section('title', 'Update Setting Details')
-{{-- <div class="content-wrapper"> --}}
+<div class="content-wrapper">
     <section class="content-header">
        
     </section>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </section>
-{{-- </div> --}}
+</div>
 
 @endsection
 
