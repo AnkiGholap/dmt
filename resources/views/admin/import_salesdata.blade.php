@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 @section('content')
 @section('title', 'Upload Sales Data')
-{{-- <div class="content-wrapper"> --}}
+<div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
             
@@ -91,6 +91,6 @@
             </div>
         </div>
     </section>
-{{-- </div> --}}
+</div>
 
 @endsection
