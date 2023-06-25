@@ -21,7 +21,7 @@ class SalesdataController extends Controller
 
     public function sales_data_import()
     {
-        return view('admin.import_salesdatanew');
+        return view('admin.import_salesdata');
     }
 
     public function sales_data_save(Request $request)

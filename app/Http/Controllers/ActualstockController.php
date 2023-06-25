@@ -21,7 +21,7 @@ class ActualstockController extends Controller
     
     public function actualstock_import()
     {
-        return view('admin.import_actualstocknew');
+        return view('admin.import_actualstock');
     }
 
     public function actual_stock_save(Request $request)

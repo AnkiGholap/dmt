@@ -42,7 +42,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('admin.suppliers.createsupplier');
+        return view('admin.suppliers.create');
     }
 
     /**
