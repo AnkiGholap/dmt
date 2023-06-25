@@ -32,6 +32,14 @@ class HomeController extends Controller
     {
         $requestData = $request->all();
 
+        $skudata     = Sku::with('category','supplier','poOrders','mastersku','currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
+        $categories  = Category::where('status',1)->pluck('name','id');
+        $masterskus  = Mastersku::where('status',1)->pluck('mastersku','id');
+        $skus        = Sku::where('status',1)->pluck('name','id');
+        $suppliers   = Supplier::where('status',1)->pluck('name','id');
+        $top25stock  = DB::table('actualstocks')->join('skus','actualstocks.product_sku_id','=','skus.id')->orderBy('actualstocks.actual_stock','Desc')->take(25)->get();
+        $top25sales  = DB::table('skuforecastt1s')->join('skus','skuforecastt1s.product_sku_id','=','skus.id')->orderBy('skuforecastt1s.offline_mass','Desc')->take(25)->get();
+
         if(!empty($requestData))
         {
             
@@ -71,18 +79,8 @@ class HomeController extends Controller
             $skudata = $skudata->orderBy('id','DESC')->get();
            
         }
-        else
-        {
-            $skudata     = Sku::with('category','supplier','poOrders','mastersku','currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
-            $categories  = Category::where('status',1)->pluck('name','id');
-            $masterskus  = Mastersku::where('status',1)->pluck('mastersku','id');
-            $skus        = Sku::where('status',1)->pluck('name','id');
-            $suppliers   = Supplier::where('status',1)->pluck('name','id');
-            $top25stock  = DB::table('actualstocks')->join('skus','actualstocks.product_sku_id','=','skus.id')->orderBy('actualstocks.actual_stock','Desc')->take(25)->get();
-            $top25sales  = DB::table('skuforecastt1s')->join('skus','skuforecastt1s.product_sku_id','=','skus.id')->orderBy('skuforecastt1s.offline_mass','Desc')->take(25)->get();
-        }
         
-          return view('admin/dashboard',compact('categories','masterskus','skus','suppliers','skudata','top25stock','top25sales'));
+        return view('admin/dashboard',compact('categories','masterskus','skus','suppliers','skudata','top25stock','top25sales'));
        // return view('admin/dashboard',compact('skus'));
     }
 
@@ -90,6 +88,14 @@ class HomeController extends Controller
     {
         $requestData = $request->all();
 
+        $skudata     = Sku::with('category','supplier','poOrders','mastersku','currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
+        $categories  = Category::where('status',1)->pluck('name','id');
+        $masterskus  = Mastersku::where('status',1)->pluck('mastersku','id');
+        $skus        = Sku::where('status',1)->pluck('name','id');
+        $suppliers   = Supplier::where('status',1)->pluck('name','id');
+        $top25stock  = DB::table('actualstocks')->join('skus','actualstocks.product_sku_id','=','skus.id')->orderBy('actualstocks.actual_stock','Desc')->take(25)->get();
+        $top25sales  = DB::table('skuforecastt1s')->join('skus','skuforecastt1s.product_sku_id','=','skus.id')->orderBy('skuforecastt1s.offline_mass','Desc')->take(25)->get();
+
         if(!empty($requestData))
         {
             
@@ -129,18 +135,8 @@ class HomeController extends Controller
             $skudata = $skudata->orderBy('id','DESC')->get();
            
         }
-        else
-        {
-            $skudata     = Sku::with('category','supplier','poOrders','mastersku','currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
-            $categories  = Category::where('status',1)->pluck('name','id');
-            $masterskus  = Mastersku::where('status',1)->pluck('mastersku','id');
-            $skus        = Sku::where('status',1)->pluck('name','id');
-            $suppliers   = Supplier::where('status',1)->pluck('name','id');
-            $top25stock  = DB::table('actualstocks')->join('skus','actualstocks.product_sku_id','=','skus.id')->orderBy('actualstocks.actual_stock','Desc')->take(25)->get();
-            $top25sales  = DB::table('skuforecastt1s')->join('skus','skuforecastt1s.product_sku_id','=','skus.id')->orderBy('skuforecastt1s.offline_mass','Desc')->take(25)->get();
-        }
         
-          return view('admin/dashboard',compact('categories','masterskus','skus','suppliers','skudata','top25stock','top25sales'));
+        return view('admin/dashboard',compact('categories','masterskus','skus','suppliers','skudata','top25stock','top25sales'));
        // return view('admin/dashboard',compact('skus'));
     }
 
