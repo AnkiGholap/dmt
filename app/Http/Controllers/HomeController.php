@@ -37,9 +37,9 @@ class HomeController extends Controller
         $masterskus = Mastersku::where('status',1)->pluck('mastersku','id');
         $skus = Sku::where('status',1)->pluck('name','id');
         $suppliers = Supplier::where('status',1)->pluck('name','id');
-$top25stock = DB::table('actualstocks')->join('skus','actualstocks.product_sku_id','=','skus.id')->orderBy('actualstocks.actual_stock','Desc')->take(25)->get();
-        $top25sales = DB::table('skuforecastt1s')->join('skus','skuforecastt1s.product_sku_id','=','skus.id')->orderBy('skuforecastt1s.t1_month_offline_mass','Desc')->take(25)->get();
-        $requestData=$request->all();
+         $top25stock  = DB::table('actualstocks')->join('skus','actualstocks.product_sku_id','=','skus.id')->orderBy('actualstocks.actual_stock','Desc')->take(25)->get();
+        $top25sales  = DB::table('skuforecastt1s')->join('skus','skuforecastt1s.product_sku_id','=','skus.id')->orderBy('skuforecastt1s.offline_mass','Desc')->take(25)->get();
+
         
         if(!empty($requestData))
         {
