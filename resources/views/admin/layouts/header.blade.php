@@ -49,7 +49,7 @@
     .main-header {margin-left: 0px !important;}
     .content-wrapper{margin-left: 0px !important;}
     .main-footer{margin-left: 0px !important}
-    .nav-link.active{background-color: #000 !important;color: #fff !important;}
+    .nav-link.active{color: #fff !important;}
     .invalid-feedback{
       display: block !important;
     }

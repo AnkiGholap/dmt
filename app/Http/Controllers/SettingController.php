@@ -31,6 +31,11 @@ class SettingController extends Controller
         // return view('admin.settings.index',compact('settings'));
     }
 
+    public function generalSetting()
+    {
+        return view('admin.upload');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

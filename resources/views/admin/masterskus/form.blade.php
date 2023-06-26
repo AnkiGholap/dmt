@@ -1,5 +1,5 @@
 <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-6">
             <div class="form-group">
                 <label>Category name*</label>
                 <select name="category_id" id="category_id" class="form-control" required>
@@ -11,7 +11,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
         <div class="repeater mt-repeater masterskus">
             <div data-repeater-list="mastersku">
                 <div class="row" data-repeater-item>

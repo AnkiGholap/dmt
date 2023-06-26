@@ -6,14 +6,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Upload Sales Data</h1>
+                    {{-- <h1>Upload Sales Data</h1> --}}
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                        
                         <div>
-                            <a href="{{ route('skuForeCastT1Import') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button">
-                                <i class="fa fa-arrow-left"></i> Back</a>
+                            {{-- <a href="{{ route('skuForeCastT1Import') }}" class="btn btn-info btn-sm text-white mb-0 me-0" type="button">
+                                <i class="fa fa-arrow-left"></i> Back</a> --}}
                         </div>
                      
                     </ol>
