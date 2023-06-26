@@ -120,7 +120,7 @@
                           <th>Category</th>
                           <th>Supplier</th>
                           <th>Actual Stock</th>
-                        
+                          <th>Forcast Data</th> 
                         </tr>
                       </thead>
                       <tbody>
@@ -135,10 +135,28 @@
                             <td>{{@$sku->category->name ? $sku->category->name : '-'}}</td>
                             <td>{{@$sku->supplier->name ? $sku->supplier->name : '-'}}</td>
                             <td>{{@$sku->currentDateStock->actual_stock? number_format($sku->currentDateStock->actual_stock) : '-'}}</td>
-                          
+                            <td><button type="button" class="btn btn-dark actualdata" data-toggle="modal" data-target="#exampleModal" data-code="{{@$sku->sku_code}}" data-id="{{@$sku->id}}" data-name="{{@$sku->name}}">
+                              Click Here
+                            </button></td>
                           
                           </tr>
                         @endforeach
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title title" id="exampleModalLabel"></h5>
+                                
+                              </div>
+                              <div class="modal-body" id="forecastdata">
+                                
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
                       </tbody>
                     </table>
                   </div>
@@ -162,6 +180,7 @@
                           <th>SKU Code</th>
                           <th>Item Name</th>
                           <th>Actual Stock</th>
+                        
                         </tr>
                       </thead>
                       <tbody>

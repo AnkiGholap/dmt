@@ -1,4 +1,3 @@
-@extends('admin.layouts.master')
 @section('content')
 @section('title', 'Roles')
 
@@ -66,7 +65,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>
-                                    <a href="{{ url('/roles/' . $item->id) }}" title="View role"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
+                                    <a href="{{ url('/roles/' . $item->id) }}" title="View role"><button class="btn btn-success btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Show</button></a>
                                     @can('role-edit')
                                     <a href="{{ url('/roles/' . $item->id . '/edit') }}" title="Edit role"><button class="btn btn-primary btn-sm"><i class="fa fa-pen" aria-hidden="true"></i> Edit</button></a>
                                     @endcan
@@ -99,5 +98,3 @@
     </section>
 </div>
 
-
-@endsection

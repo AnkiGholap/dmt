@@ -33,7 +33,31 @@ var table = jQuery('.data-table').DataTable({
 });
 
 jQuery(document).ready(function() {
+  jQuery(".actualdata").on('click',function(){
+    var id = jQuery(this).data('id');
+    var code = jQuery(this).data('code');
+    var name = jQuery(this).data('name');
+    console.log('fdsf');
+    jQuery.ajax({
+      method: "POST",
+      url: 'fetchforecatdata',
+      data: {
+          id:id,
+          name:name,
+          code:code,
+      },
+      success: function(response) 
+      {
+         jQuery(".title").html(name+'-'+code);
+         jQuery("#forecastdata").empty();
+         jQuery("#forecastdata").html(response);
+      }
+    });
+  })
+
   jQuery(".secondarymenu").on('click',function() {
+    jQuery(".secondarymenu").removeClass('active');
+    jQuery(this).toggleClass('active');
     var url = jQuery(this).data('url');
         
       jQuery.ajax({
@@ -66,19 +90,23 @@ jQuery(document).ready(function() {
       
       jQuery("#category").select2({
           theme: "classic",
-          placeholder:"Filter Category"
+          placeholder:"Filter Category",
+          val:null
       }); 
       jQuery("#mastersku").select2({
         theme: "classic",
-        placeholder:"Filter Master Sku"
+        placeholder:"Filter Master Sku",
+        val:null
       }); 
       jQuery("#skus").select2({
         theme: "classic",
-        placeholder:"Filter Skus"
+        placeholder:"Filter Skus",
+        val:null
       }); 
       jQuery("#suppliers").select2({
         theme: "classic",
-        placeholder:"Filter Supplier"
+        placeholder:"Filter Supplier",
+        val:null
       }); 
      jQuery("#category").on("change",function(){
         var id = jQuery(this).val();
@@ -92,9 +120,10 @@ jQuery(document).ready(function() {
               success: function(response) 
               {
                  var result = jQuery.parseJSON(response);
+                 jQuery("#mastersku").html('<option value="">Choose Mastersku</option>');
                  jQuery("#mastersku").html(result[0]);
                  jQuery('.mastersku').trigger('change'); 
-                 
+                 jQuery("#skus").html('<option value="">Choose Skus</option>');
                  jQuery("#skus").html(result[1]);
                  jQuery('.skus').trigger('change'); 
               }

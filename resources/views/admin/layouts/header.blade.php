@@ -87,8 +87,10 @@
   color: #000;
 }
 
-.nav2{position: fixed;top: 12%;padding-left: 1%}
+.nav2{position: fixed;top: 9%;padding-left: 1%;z-index:1037;width: 100%;}
 .sectionbox{margin-top: 13%;}
+
+.modal-dialog{max-width: 100% !important;}
   </style>
 
 </head>

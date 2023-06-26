@@ -41,7 +41,7 @@
     }
 
     .logo1 img {
-        width: 100px;
+        /* width: 100px; */
         z-index: 9;
         position: relative;
     }
@@ -54,7 +54,7 @@
 
     .login-page,
     .register-page {
-        background-image: url(images/banner.png);
+        /* /background-image: url(images/banner.png); */
         position: relative;
         background-repeat: no-repeat;
         align-items: center;
@@ -63,6 +63,7 @@
         background-size: 100% 100%;
         min-height: 100vh !important;
         height: inherit;
+        background-color: #fff !important;
     }
 
     .login-page::after,
@@ -74,7 +75,7 @@
         /* background: transparent linear-gradient(90deg, #1C84A6 0%, #386BB2 25%, #7356A3 49%, #903B94 72%, #C54961 100%) 0% 0% no-repeat padding-box;
 opacity: 0.5; */
         /* background-color: #577FB3; */
-        background-color: transparent linear-gradient(180deg, #577FB3 0%, #577EB3F8 11%, #577EB3E4 24%, #577EB3C3 38%, #577EB394 53%, #577EB358 68%, #577EB310 84%, #577EB300 87%) 0% 0% no-repeat padding-box;
+        /* background-color: transparent linear-gradient(180deg, #577FB3 0%, #577EB3F8 11%, #577EB3E4 24%, #577EB3C3 38%, #577EB394 53%, #577EB358 68%, #577EB310 84%, #577EB300 87%) 0% 0% no-repeat padding-box; */
         mix-blend-mode: multiply;
         /* opacity: 1; */
     }
@@ -96,7 +97,7 @@ opacity: 0.5; */
         left: 0;
         right: 0;
         bottom: 0;
-        background: transparent linear-gradient(180deg, #577FB3 0%, #577EB3F8 11%, #577EB3E4 24%, #577EB3C3 38%, #577EB394 53%, #577EB358 68%, #577EB310 84%, #577EB300 87%) 0% 0% no-repeat padding-box;
+        /* background: transparent linear-gradient(180deg, #577FB3 0%, #577EB3F8 11%, #577EB3E4 24%, #577EB3C3 38%, #577EB394 53%, #577EB358 68%, #577EB310 84%, #577EB300 87%) 0% 0% no-repeat padding-box; */
         /* mix-blend-mode: multiply; */
         opacity: 1;
     }
@@ -120,7 +121,7 @@ opacity: 0.5; */
     }
 
     .input-group {
-        /* border: 2px solid #FFFFFF; */
+        border: 1px solid #000;
         /* border-radius: 5px; */
         background: #E7E8EA;
     }
@@ -172,8 +173,8 @@ opacity: 0.5; */
     }
 
     .btn-primary {
-        background-color: #F6917D;
-        border: 3px solid #F6917D;
+        background-color: #000;
+        border: 3px solid #000;
         border-radius: 25px;
         color: #fff;
         /* background-color: #007bff; */
@@ -187,8 +188,8 @@ opacity: 0.5; */
     }
 
     .btn-primary:hover {
-        background-color: #eb8672;
-        border: 3px solid #eb8672;
+        background-color: #000;
+        border: 3px solid #000;
         /* border-radius: 5px; */
         color: #fff;
         /* background-color: #007bff; */
@@ -240,8 +241,9 @@ opacity: 0.5; */
         box-sizing: border-box;
         /* background-color: rgb(0 0 0/ 50%); */
         background-color: rgb(248 237 235/ 10%) !important;
-        margin: auto 30px auto 30px;
-        box-shadow: 20px 20px 50px 10px #efb3b3;
+        /* margin: auto 30px auto 30px; */
+        border: 1px solid #3d3c3c;
+        /* box-shadow: 20px 20px 50px 10px #efb3b3; */
         /* background: rgb(0 40 65 / 88%); */
         /* mix-blend-mode: multiply; */
         /* opacity: 0.88; */
@@ -356,8 +358,8 @@ opacity: 0.5; */
 
 <body class="hold-transition ">
     <div class="login-page">
-        <div class="logo-header w-100 d-flex justify-content-between">
-            <a href="{{url('/login')}}" class="logo-img logo1"><img src="images/imageholding.png" class="img-fluid" alt=""></a>
+        <div class="logo-header d-flex justify-content-between">
+            <a href="{{url('/login')}}" class="logo-img logo1"><img src="http://reneebackyard.com/images/system_images/1687688879renee.png" class="img-fluid" alt=""></a>
            
         </div>
         <div class="login-box">
@@ -365,9 +367,9 @@ opacity: 0.5; */
             <div class="card card-outline card-primary">
                
                 <div class="card-body">
-                    <div class="club-img">
+                    {{-- <div class="club-img">
                         <img src="images/metabolik.png" class="img-fluid" alt="">
-                    </div> 
+                    </div>  --}}
                     <p class="login-box-msg">Welcome Back! Let's Get You Logged In.</p>
                     @error('email')
                     <p class="feedback">{{ $message }}</p>
@@ -407,7 +409,7 @@ opacity: 0.5; */
                            
                             <!-- /.col -->
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary btn-block">Submit <img
+                                <button type="submit" class="btn btn-dark btn-block">Submit <img
                                         src="images/icon_signin.svg" class="img-fluid" alt=""></button>
                             </div><br>
                             <!-- /.col -->

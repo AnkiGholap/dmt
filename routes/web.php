@@ -62,4 +62,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/filter-columns', [HomeController::class, 'filterColumns']);
     Route::get('upload',[SkuController::class,'upload'])->name('upload');
     Route::get('general-setting',[SettingController::class,'generalSetting'])->name('general-setting');
+    Route::post('/fetchforecatdata', [HomeController::class, 'fetchforecatdata']);
 });
+
+
