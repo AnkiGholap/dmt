@@ -33,8 +33,8 @@
    
     @can('setting-viewAny')
     <li class="nav-item">
-        <a href="{{ url('settings') }}"
-            class="nav-link {{ request()->is('settings*') ? 'active' : '' }}">
+        <a href="{{ url('settingnew') }}"
+            class="nav-link">
            <p>General Setting {{-- <span class="badge badge-info right">2</span> --}}</p>
         </a>
     </li>
@@ -59,6 +59,7 @@
    
   </nav>
 <br><br>
+@if(Request::segment(1) == 'upload')
 <div class="nav2">
 <nav class="navbar2">
   <ul>
@@ -70,6 +71,18 @@
     <li><a href="javascript:void(0);" data-url="/salesdataImport" class="nav-link secondarymenu">Add Actual Sales</a></li>
     <li><a href="javascript:void(0);" data-url="/skuForeCastT1Import" class="nav-link secondarymenu">Add Forcast</a></li>
   </ul>
-</nav>  
+</nav>
+@elseif(Request::segment(1) == 'settingnew')
+<div class="nav2">
+  <nav class="navbar2">
+    <ul>
+      <li><a href="javascript:void(0);" data-url="/users/{{@Auth::user()->id}}/edit/" class="nav-link secondarymenu">User Profile</a></li>
+      <li><a href="javascript:void(0);" data-url="/users" class="nav-link secondarymenu">Users</a></li>
+      <li><a href="javascript:void(0);" data-url="/roles" class="nav-link secondarymenu">Roles</a></li>
+      <li><a href="javascript:void(0);" data-url="/settings" class="nav-link secondarymenu">General Settings</a></li>
+     
+    </ul>
+  </nav>
+@endif
 </div>
   

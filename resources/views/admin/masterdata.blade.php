@@ -50,26 +50,7 @@
           
           <!-- /.col -->
         </div>
-        <!-- /.row -->
-        
-           <select id="columnSelector" class="form-control" multiple="multiple">
-            <option value="0">Item Name</option>
-            <option value="1">Master Sku</option>
-            <option value="2">Category</option>
-            <option value="3">Supplier</option>
-            <option value="4">Actual Stock</option>
-            <option value="5">SKU Code</option>
-            <option value="6">MRP</option>
-            <option value="7">Covered</option>
-            <option value="8">Stock To Be Maintained</option>
-            <option value="9">Tags</option>
-            <option value="10">PO expected to arrive in 15 Days</option>
-            <option value="11">Stock Excess / Shortage</option>
-            <option value="12">Open PO Qty</option>
-           
-           
-
-        </select>
+       
           <!-- Add more checkboxes for each column you want to filter/hide/show -->
        
         <table id="data-table"  class="display" style="width:100%">

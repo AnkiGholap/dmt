@@ -144,4 +144,9 @@ class SettingController extends Controller
     {
         //
     }
+
+    public function settingnew()
+    {
+        return view('admin.setting');
+    }
 }

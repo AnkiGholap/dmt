@@ -2,7 +2,7 @@
         <div class="col-sm-5">
             <div class="form-group">
                 <label>Category name*</label>
-                <select name="category_id" id="category_id" class="form-control">
+                <select name="category_id" id="category_id" class="form-control" required>
                 <option value="">----Select Category----</option>
                 @foreach($category as $item)
                 <option value="{{ $item->id }}" {{isset($mastersku) && $mastersku->category_id == $item->id ? 'selected' : '' }}>
@@ -18,7 +18,7 @@
     
                     <div class="form-group col-md-6">
                         <label>MasterSku</label>
-                        <input type="text" name="mastersku" value="{{ $mastersku->mastersku ?? old('name')}}" class="form-control mastersku" placeholder="Master Sku" />
+                        <input type="text" name="mastersku" value="{{ $mastersku->mastersku ?? old('name')}}" class="form-control mastersku" placeholder="Master Sku" required/>
                     </div>
     
                     <div class="form-group col-md-6">

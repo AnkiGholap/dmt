@@ -1,4 +1,3 @@
-@extends('admin.layouts.master')
 @section('content')
 @section('title', 'System Users')
 <div class="content-wrapper">
@@ -27,7 +26,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card card-success">
+                    <div class="card card-dark">
                         <div class="card-header">
                             <h3 class="card-title">Edit User</h3>
                         </div>
@@ -47,4 +46,3 @@
     </section>
 </div>
 
-@endsection

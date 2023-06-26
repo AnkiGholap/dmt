@@ -38,13 +38,14 @@ class HomeController extends Controller
 $top25stock = DB::table('actualstocks')->join('skus','actualstocks.product_sku_id','=','skus.id')->orderBy('actualstocks.actual_stock','Desc')->take(25)->get();
         $top25sales = DB::table('skuforecastt1s')->join('skus','skuforecastt1s.product_sku_id','=','skus.id')->orderBy('skuforecastt1s.t1_month_offline_mass','Desc')->take(25)->get();
         $requestData=$request->all();
+        
         if(!empty($requestData))
         {
             
             $category = isset($requestData['category'])?$requestData['category']:"";
           
             $mastersku = isset($requestData['mastersku'])?$requestData['mastersku']:"";
-           
+          
             $sku = isset($requestData['skus'])?$requestData['skus']:"";
             
             $supplier = isset($requestData['suppliers'])?$requestData['suppliers']:"";
@@ -58,17 +59,19 @@ $top25stock = DB::table('actualstocks')->join('skus','actualstocks.product_sku_i
             }
             if(isset($mastersku) && !empty($mastersku) && $mastersku != '')
             {   
+             
                 $mastersku = explode(",",$mastersku); 
                 $skudata->WhereIn('master_sku_id',$mastersku);
             }
-            if(isset($skus) && !empty($skus) && $skus != '')
+            if(isset($sku) && !empty($sku) && $sku != '')
             {    
-                $skus = explode(",",$skus);
-                $skudata->WhereIn('id',$skus);
+                $sku = explode(",",$sku);
+                $skudata->WhereIn('id',$sku);
             }
-            if(isset($suppliers) && !empty($suppliers))
+          
+            if(isset($supplier) && !empty($supplier))
             {    
-                $skudata = Supplier::whereIn('id',$suppliers);
+                $skudata = Supplier::whereIn('id',$supplier);
             }  
             
             $skudata = $skudata->orderBy('id','DESC')->get();
@@ -77,6 +80,12 @@ $top25stock = DB::table('actualstocks')->join('skus','actualstocks.product_sku_i
         
           return view('admin/dashboard',compact('categories','masterskus','skus','suppliers','skudata','top25stock','top25sales'));
        // return view('admin/dashboard',compact('skus'));
+    }
+
+    public function masterdata(Request $request){
+        $skus  = Sku::with('category','supplier','poOrders','mastersku','currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
+
+        return view('admin/masterdata',compact('skus'));
     }
 
     public function fetch_dropdown_data(Request $request){
@@ -89,7 +98,7 @@ $top25stock = DB::table('actualstocks')->join('skus','actualstocks.product_sku_i
            
             $mastersku = Mastersku::whereIn('category_id',$category_id)->orderBy('mastersku')->pluck('mastersku','id');
             $sku = Sku::whereIn('category_id',$category_id)->orderBy('name')->pluck('name','id');
-
+          
             if(!empty($mastersku)){
                 foreach($mastersku as $key=>$item)
                 {
