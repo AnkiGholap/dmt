@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('upload',[SkuController::class,'upload'])->name('upload');
     Route::get('general-setting',[SettingController::class,'generalSetting'])->name('general-setting');
     Route::post('/fetchforecatdata', [HomeController::class, 'fetchforecatdata']);
+    Route::post('/fetchaforecastMaster', [HomeController::class, 'fetchaforecastMaster']);
+    Route::post('/fetchactualdataMaster', [HomeController::class, 'fetchactualdataMaster']);
 });
 
 

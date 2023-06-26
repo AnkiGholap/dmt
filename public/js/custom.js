@@ -55,6 +55,49 @@ jQuery(document).ready(function() {
     });
   })
 
+  jQuery(".actualdatamaster").on('click',function(){
+    var id = jQuery(this).data('id');
+    var code = jQuery(this).data('code');
+    var name = jQuery(this).data('name');
+    console.log('fdsf');
+    jQuery.ajax({
+      method: "POST",
+      url: 'fetchactualdataMaster',
+      data: {
+          id:id,
+          name:name,
+          code:code,
+      },
+      success: function(response) 
+      {
+         jQuery(".title").html(name+'-'+code);
+         jQuery("#actualdatamaster").empty();
+         jQuery("#actualdatamaster").html(response);
+      }
+    });
+  })
+
+  jQuery(".forecastdatamaster").on('click',function(){
+    var id = jQuery(this).data('id');
+    var code = jQuery(this).data('code');
+    var name = jQuery(this).data('name');
+    console.log('fdsf');
+    jQuery.ajax({
+      method: "POST",
+      url: 'fetchaforecastMaster',
+      data: {
+          id:id,
+          name:name,
+          code:code,
+      },
+      success: function(response) 
+      {
+         jQuery(".title").html(name+'-'+code);
+         jQuery("#forecastdatamaster").html(response);
+      }
+    });
+  })
+
   jQuery(".secondarymenu").on('click',function() {
     jQuery(".secondarymenu").removeClass('active');
     jQuery(this).toggleClass('active');

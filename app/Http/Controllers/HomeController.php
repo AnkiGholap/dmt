@@ -89,7 +89,7 @@ class HomeController extends Controller
         $requestData = $request->all();
 
         
-        $skudata     = Sku::with('category','supplier','poOrders','mastersku','currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->orderBy('id','ASC')->get();
+        $skudata     = Sku::with('category','supplier','poOrders','mastersku')->where('status',1)->orderBy('id','ASC')->get();
         
 
         $categories  = Category::where('status',1)->pluck('name','id');
@@ -207,6 +207,69 @@ class HomeController extends Controller
                 <td>".$skuforcastt3Online."</td>
                 <td>".$skuforcastt3OfflineSelect."</td>
                 <td>".$skuforcastt3OfflineMass."</td>";
+            }    
+        }
+        echo $html;
+    }
+
+    public function fetchactualdataMaster(Request $request){
+        $requestData = $request->all();
+        $skus  = Sku::with('currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->where('id',$requestData['id'])->orderBy('id','ASC')->get();
+
+        if(!empty($skus))
+        {
+                $html = "<table class='table table-sm responsive'>
+                <tr>
+                <th>M-2 month Online</th>
+                <th>M-1 month Online</th>
+                <th>M month Online</th>
+                </tr>";
+            foreach($skus as $key => $sku){
+                $skuPastTwoMonthOnline = @$sku->skuPastTwoMonth->online?number_format($sku->skuPastTwoMonth->online) : '-';
+                $skuPastTwoMonthOnline = @$sku->skuPastTwoMonth->online? number_format($sku->skuPastTwoMonth->online) : '-';
+                $actualSalesData = @$sku->actualSalesData()?number_format($sku->actualSalesData()->sum('t_month_online')) : '-';
+                
+                $html .= "<td>".$skuPastTwoMonthOnline."</td>
+                <td>".$skuPastTwoMonthOnline."</td>
+                <td>".$actualSalesData."</td>";
+            }    
+        }
+        echo $html;
+    }
+
+    public function fetchaforecastMaster(Request $request){
+        $requestData = $request->all();
+        $skus  = Sku::with('currentDateStock','skuPastTwoMonth','skuPastOneMonth','actualSalesData','skuforcastt1','skuforcastt2','skuforcastt3')->where('status',1)->where('id',$requestData['id'])->orderBy('id','ASC')->get();
+
+        if(!empty($skus))
+        {
+                $html = "<table class='table table-sm responsive'>
+                <tr>
+                <th>M1 month Online</th>
+                <th>M1 month Offline</th>
+                <th>M2 month Online</th>
+                <th>M2 month Offline</th>
+                <th>M3 month Online</th>
+                <th>M3 month Offline</th>
+                </tr>";
+            foreach($skus as $key => $sku){
+                $skuforcastt1Online = @$sku->skuforcastt1->online? number_format($sku->skuforcastt1->online) : '-';
+                $skuforcastt1OfflineSelect = @$sku->skuforcastt1->offline_select?number_format($sku->skuforcastt1->offline_select) : '-';
+                $skuforcastt1OfflineMass = @$sku->skuforcastt1->offline_mass? number_format($sku->skuforcastt1->offline_mass) : '-'; 
+                $skuforcastt2Online = @$sku->skuforcastt2->online?number_format($sku->skuforcastt2->online) : '-';
+                $skuforcastt2OfflineSelect = @$sku->skuforcastt2->offline_select? number_format($sku->skuforcastt2->offline_select) : '-';
+                $skuforcastt2OfflineMass = @$sku->skuforcastt2->offline_mass?number_format($sku->skuforcastt2->offline_mass) : '-';
+                $skuforcastt3Online = @$sku->skuforcastt3->online? number_format($sku->skuforcastt3->online) : '-';
+                $skuforcastt3OfflineSelect = @$sku->skuforcastt3->offline_select? number_format($sku->skuforcastt3->offline_select) : '-';
+                $skuforcastt3OfflineMass = @$sku->skuforcastt3->offline_mass? number_format($sku->skuforcastt3->offline_mass) : '-';
+
+                
+                $html .= "<td>".$skuforcastt1Online."</td>
+                <td>".$skuforcastt1OfflineSelect."</td>
+                <td>".$skuforcastt2Online."</td>
+                <td>".$skuforcastt2OfflineSelect."</td>
+                <td>".$skuforcastt3Online."</td>
+                <td>".$skuforcastt3OfflineSelect."</td>";
             }    
         }
         echo $html;
