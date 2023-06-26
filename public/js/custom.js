@@ -33,7 +33,28 @@ var table = jQuery('.data-table').DataTable({
 });
 
 jQuery(document).ready(function() {
-  
+  jQuery(".actualdata").on('click',function(){
+    var id = jQuery(this).data('id');
+    var code = jQuery(this).data('code');
+    var name = jQuery(this).data('name');
+    console.log('fdsf');
+    jQuery.ajax({
+      method: "POST",
+      url: 'fetchforecatdata',
+      data: {
+          id:id,
+          name:name,
+          code:code,
+      },
+      success: function(response) 
+      {
+         jQuery(".title").html(name+'-'+code);
+         jQuery("#forecastdata").empty();
+         jQuery("#forecastdata").html(response);
+      }
+    });
+  })
+
   jQuery(".secondarymenu").on('click',function() {
     jQuery(".secondarymenu").removeClass('active');
     jQuery(this).toggleClass('active');

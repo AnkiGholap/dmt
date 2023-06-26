@@ -32,28 +32,7 @@
                 Master Data
             </p>
         </a>
-<<<<<<< HEAD
-    </li>
-   
-    @can('setting-viewAny')
-    <li class="nav-item">
-        <a href="{{ url('settingnew') }}"
-            class="nav-link">
-           <p>General Setting {{-- <span class="badge badge-info right">2</span> --}}</p>
-        </a>
-    </li>
-    @endcan
-      
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      
-      <!-- Messages Dropdown Menu -->
-      
-      
-=======
       </li>
->>>>>>> 9e66bd1f43d3e11f34b42e65483f55c155011325
 
       @can('setting-viewAny')
         <li class="nav-item">
@@ -72,35 +51,6 @@
       </li>
     </ul>
   </nav>
-<<<<<<< HEAD
-<br><br>
-@if(Request::segment(1) == 'upload')
-<div class="nav2">
-<nav class="navbar2">
-  <ul>
-    <li><a href="javascript:void(0);" data-url="/skus/create" class="nav-link secondarymenu">Add Sku</a></li>
-    <li><a href="javascript:void(0);" data-url="/mastersku/create" class="nav-link secondarymenu">Add Master Sku</a></li>
-    <li><a href="javascript:void(0);" data-url="/categories/create" class="nav-link secondarymenu">Add Category</a></li>
-    <li><a href="javascript:void(0);" data-url="/suppliers/create" class="nav-link secondarymenu">Add Suppliers</a></li>
-    <li><a href="javascript:void(0);" data-url="/actualStockImport" class="nav-link secondarymenu">Add Actual Stock</a></li>
-    <li><a href="javascript:void(0);" data-url="/salesdataImport" class="nav-link secondarymenu">Add Actual Sales</a></li>
-    <li><a href="javascript:void(0);" data-url="/skuForeCastT1Import" class="nav-link secondarymenu">Add Forcast</a></li>
-  </ul>
-</nav>
-@elseif(Request::segment(1) == 'settingnew')
-<div class="nav2">
-  <nav class="navbar2">
-    <ul>
-      <li><a href="javascript:void(0);" data-url="/users/{{@Auth::user()->id}}/edit/" class="nav-link secondarymenu">User Profile</a></li>
-      <li><a href="javascript:void(0);" data-url="/users" class="nav-link secondarymenu">Users</a></li>
-      <li><a href="javascript:void(0);" data-url="/roles" class="nav-link secondarymenu">Roles</a></li>
-      <li><a href="javascript:void(0);" data-url="/settings" class="nav-link secondarymenu">General Settings</a></li>
-     
-    </ul>
-  </nav>
-@endif
-</div>
-=======
   @if(request()->is('upload') || request()->is('skus*') || request()->is('mastersku*') || request()->is('categories*') || request()->is('suppliers*') || request()->is('actualStockImport*')|| request()->is('salesdataImport*')|| request()->is('skuForeCastT1Import*'))
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav mx-auto">
@@ -147,5 +97,4 @@
       </ul>
     </nav>
   @endif  
->>>>>>> 9e66bd1f43d3e11f34b42e65483f55c155011325
   
