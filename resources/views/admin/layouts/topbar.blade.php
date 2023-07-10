@@ -9,8 +9,7 @@
     <ul class="navbar-nav mr-auto">
       
         <img src="{{ asset(get_from_setting('logo')) }}" alt="{{ get_from_setting('app_name') }}"
-        class="brand-image img-circle elevation-3" style="opacity: .8;margin-left: 20%;
-        width: 30%;">
+        class="brand-image elevation-31" style="opacity: .8;width: 50%;">
     </ul>
     <ul class="navbar-nav mx-auto">
       <li class="nav-item {{ request()->is('home') == 'home' ? 'menu-open' : null }}">
@@ -26,7 +25,7 @@
         <a href="{{url('/upload')}}" class="nav-link {{ request()->is('upload') || request()->is('skus*') || request()->is('mastersku*') || request()->is('categories*') || request()->is('suppliers*') || request()->is('actualStockImport*')|| request()->is('salesdataImport*')|| request()->is('skuForeCastT1Import*') ? 'active' : null }}">Upload</a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item d-none">
         <a href="{{ url('/masterdata') }}" class="nav-link {{ request()->is('masterdata') ? 'active' : null }}">
             <p>
                 Master Data
@@ -55,10 +54,10 @@
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <ul class="navbar-nav mx-auto">
         @can('sku-viewAny')
-            <li><a href="{{url('skus') }}" class="nav-link {{ request()->is('skus*') ? 'active' : '' }} ">Add Sku</a></li>
+            <li><a href="{{url('skus') }}" class="nav-link {{ request()->is('skus*') ? 'active' : '' }} ">Add SKU</a></li>
         @endcan
         @can('mastersku-viewAny')
-            <li><a href="{{url('mastersku')}}"   class="nav-link {{ request()->is('mastersku*') ? 'active' : '' }} ">Add Master Sku</a></li>
+            <li><a href="{{url('mastersku')}}"   class="nav-link {{ request()->is('mastersku*') ? 'active' : '' }} ">Add Master SKU</a></li>
         @endcan    
         @can('category-viewAny')
             <li><a href="{{url('categories')}}"  class="nav-link {{ request()->is('categories*') ? 'active' : '' }} ">Add Category</a></li>
@@ -73,7 +72,7 @@
             <li><a href="{{url('salesdataImport')}}"   class="nav-link {{ request()->is('salesdataImport*') ? 'active' : '' }} ">Add Actual Sales</a></li>
         @endcan 
         @can('skuforecastt1-viewAny')
-            <li><a href="{{url('skuForeCastT1Import')}}" class="nav-link {{ request()->is('skuForeCastT1Import*') ? 'active' : '' }} ">Add Forcast</a></li>
+            <li><a href="{{url('skuForeCastT1Import')}}" class="nav-link {{ request()->is('skuForeCastT1Import*') ? 'active' : '' }} ">Add Forecast</a></li>
         @endcan
       </ul>
     </nav>

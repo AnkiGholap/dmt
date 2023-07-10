@@ -112,13 +112,14 @@ class MasterskuController extends Controller
                     $mastersku->update([
                         'category_id' => $requestData['category_id'],
                         'mastersku'=> $requestData['mastersku'][$i]['mastersku'],
+                        'status'=>$requestData['status']
                     ]);
                 }
                 else{
                     Mastersku::create([
                         'category_id' => $requestData['category_id'],
                         'mastersku'=> $requestData['mastersku'][$i]['mastersku'],
-                        'status'=>1
+                        'status'=>$requestData['status']
                     ]);
                 }
             }
