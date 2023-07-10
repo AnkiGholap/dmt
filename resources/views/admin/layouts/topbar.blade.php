@@ -8,8 +8,8 @@
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav mr-auto">
       
-        <img src="{{ asset(get_from_setting('logo')) }}" alt="{{ get_from_setting('app_name') }}"
-        class="brand-image elevation-31" style="opacity: .8;width: 50%;">
+        <a href="{{url('/')}}"><img src="{{ asset(get_from_setting('logo')) }}" alt="{{ get_from_setting('app_name') }}"
+        class="brand-image elevation-31" style="opacity: .8;width: 50%;"></a>
     </ul>
     <ul class="navbar-nav mx-auto">
       <li class="nav-item {{ request()->is('home') == 'home' ? 'menu-open' : null }}">

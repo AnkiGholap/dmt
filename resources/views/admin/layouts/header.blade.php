@@ -91,6 +91,8 @@
 .sectionbox{margin-top: 13%;}
 
 .modal-dialog{max-width: 100% !important;}
+
+.card-header{background-color: #343a40!important;}
   </style>
 
 </head>
