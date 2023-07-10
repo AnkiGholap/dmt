@@ -55,6 +55,48 @@ jQuery(document).ready(function() {
     });
   })
 
+  jQuery(".actualdatamaster").on('click',function(){
+    var id = jQuery(this).data('id');
+    var code = jQuery(this).data('code');
+    var name = jQuery(this).data('name');
+    console.log('fdsf');
+    jQuery.ajax({
+      method: "POST",
+      url: 'fetchactualdataMaster',
+      data: {
+          id:id,
+          name:name,
+          code:code,
+      },
+      success: function(response) 
+      {
+         jQuery(".title").html(name+'-'+code);
+         jQuery("#actualdatamaster").empty();
+         jQuery("#actualdatamaster").html(response);
+      }
+    });
+  })
+
+  jQuery(".forecastdatamaster").on('click',function(){
+    var id = jQuery(this).data('id');
+    var code = jQuery(this).data('code');
+    var name = jQuery(this).data('name');
+    jQuery.ajax({
+      method: "POST",
+      url: 'fetchaforecastMaster',
+      data: {
+          id:id,
+          name:name,
+          code:code,
+      },
+      success: function(response) 
+      {
+         jQuery(".title").html(name+'-'+code);
+         jQuery("#forecastdatamaster").html(response);
+      }
+    });
+  })
+
   jQuery(".secondarymenu").on('click',function() {
     jQuery(".secondarymenu").removeClass('active');
     jQuery(this).toggleClass('active');
@@ -95,12 +137,12 @@ jQuery(document).ready(function() {
       }); 
       jQuery("#mastersku").select2({
         theme: "classic",
-        placeholder:"Filter Master Sku",
+        placeholder:"Filter Master SKU",
         val:null
       }); 
       jQuery("#skus").select2({
         theme: "classic",
-        placeholder:"Filter Skus",
+        placeholder:"Filter SKU",
         val:null
       }); 
       jQuery("#suppliers").select2({
@@ -134,7 +176,7 @@ jQuery(document).ready(function() {
               
           var categoryArray =  jQuery("#category").val();
           var masterskuArray = jQuery("#mastersku").val();
-          var skuArray = jQuery("#sku").val();
+          var skuArray = jQuery("#skus").val();
           var supplierArray = jQuery("#supplier").val();
           
           var newurl = '';

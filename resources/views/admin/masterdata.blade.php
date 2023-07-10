@@ -121,7 +121,9 @@
                           <th>Item Name</th>
                           <th>Master SKU</th>
                           <th>Category</th>
-                          <th colspan="2">
+                          <th>Actual Data</th>
+                          <th>Forecast Data</th>
+                          {{-- <th colspan="2">
                             <div class="row">Actual Data</div>
                             <div class="row">
                               <div style="width: 33.33%; float: left;">M</div>
@@ -129,7 +131,14 @@
                               <div style="width: 33.33%; float: left;">M2</div>
                             </div>
                           </th> 
-                         
+                          <th colspan="2">
+                            <div class="row">Forecast Data</div>
+                            <div class="row">
+                              <div style="width: 33.33%; float: left;">M1</div>
+                              <div style="width: 33.33%; float: left;">M2</div>
+                              <div style="width: 33.33%; float: left;">M3</div>
+                            </div>
+                          </th>  --}}
                           
                         </tr>
                       </thead>
@@ -143,16 +152,76 @@
                             <td>{{$sku->name ? $sku->name :'-' }}</td>
                             <td>{{@$sku->mastersku->mastersku ? $sku->mastersku->mastersku : '-'}}</td>
                             <td>{{@$sku->category->name ? $sku->category->name : '-'}}</td>
-                        
-                      <td>
+                            <td><button type="button" class="btn btn-dark actualdatamaster" data-toggle="modal" data-target="#exampleModal" data-code="{{@$sku->sku_code}}" data-id="{{@$sku->id}}" data-name="{{@$sku->name}}">
+                              Click Here
+                            </button></td>
+                            <td><button type="button" class="btn btn-dark forecastdatamaster" data-toggle="modal" data-target="#exampleModal" data-code="{{@$sku->sku_code}}" data-id="{{@$sku->id}}" data-name="{{@$sku->name}}">
+                              Click Here
+                            </button></td>
+                      {{-- <td>
                         
                         <div style="width: 33.33%; float: left;">{{@$sku->skuPastTwoMonth->online? number_format($sku->skuPastTwoMonth->online) : '-'}}</div>
                         <div style="width: 33.33%; float: left;">{{@$sku->skuPastOneMonth->online? number_format($sku->skuPastOneMonth->online) : '-'}}</div>
                         <div style="width: 33.33%; float: left;">{{@$sku->actualSalesData()? number_format($sku->actualSalesData()->sum('t_month_online')) : '-'}}</div>
                       </td>
+
+                      <td>
+                        <div style="width: 33.33%; float: left;">
+                        <div style="width: 50%; float: left;">{{@$sku->skuforcastt1->online? number_format($sku->skuforcastt1->online) : '-'}}</div>
+                        <div style="width: 50%; float: left;">{{@$sku->skuforcastt1->offline_select? number_format($sku->skuforcastt1->offline_select) : '-'}}</div>
+                        </div>
+                        <div style="width: 33.33%; float: left;">
+                          <div style="width: 50%; float: left;">
+                          {{@$sku->skuforcastt2->online? number_format($sku->skuforcastt2->online) : '-'}}
+                          </div>
+                          <div style="width: 50%; float: left;">
+                            {{@$sku->skuforcastt2->offline_select? number_format($sku->skuforcastt2->offline_select) : '-'}}
+                            </div>
+                        </div>
+                        <div style="width: 33.33%; float: left;">
+                          <div style="width: 50%; float: left;">
+                          {{@$sku->skuforcastt3->online? number_format($sku->skuforcastt3->online) : '-'}}
+                          </div>
+                          <div style="width: 50%; float: left;">
+                            {{@$sku->skuforcastt3->offline_select? number_format($sku->skuforcastt3->offline_select) : '-'}}
+                            </div>
+                        </div>
+                      </td> --}}
                            
                         @endforeach
-                       
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title title" id="exampleModalLabel"></h5>
+                                
+                              </div>
+                              <div class="modal-body" id="actualdatamaster">
+                                
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title title" id="exampleModalLabel1"></h5>
+                                
+                              </div>
+                              <div class="modal-body" id="forecastdatamaster">
+                                
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
                       </tbody>
                     </table>
                   </div>

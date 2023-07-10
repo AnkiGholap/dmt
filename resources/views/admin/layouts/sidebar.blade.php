@@ -148,7 +148,7 @@
                             <li class="nav-item">
                                 <a href="{{ url('mastersku') }}" class="nav-link {{ request()->is('mastersku*') ? 'active' : '' }}">
                                     <i class="fas fa-house-user nav-icon"></i>
-                                    <p>Master Sku {{-- <span class="badge badge-info right">2</span> --}}</p>
+                                    <p>Master SKU {{-- <span class="badge badge-info right">2</span> --}}</p>
                                 </a>
                             </li>
                         @endcan
@@ -178,7 +178,7 @@
                                 <li class="nav-item">
                                     <a href="{{ url('skuImport') }}" class="nav-link {{ request()->is('skuImport*') ? 'active' : '' }}">
                                         <i class="fas fa-house-user nav-icon"></i>
-                                        <p>Sku Import</p>
+                                        <p>SKU Import</p>
                                     </a>
                                 </li>
                           

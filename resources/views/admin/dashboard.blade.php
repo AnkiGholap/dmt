@@ -2,7 +2,7 @@
 @section('content')
 @section('title', 'Dashboard')
   <style>
-    
+    .select2-container .select2-selection--multiple .select2-selection__rendered{white-space: break-spaces !important;}
     table {
       font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
       border-collapse: collapse;
@@ -71,7 +71,7 @@
               <!-- /.col -->
               @if(!empty($skus))
               <select id="skus" class="form-control select2" name="skus" multiple>
-                <option value="">Filter Skus</option>
+                <option value="">Filter SKU</option>
                 @foreach($skus as $k=>$v)
                   <option value="{{$k}}">{{$v}}</option>
                 @endforeach
@@ -94,7 +94,7 @@
                       <!-- /.col -->
             </div>
             <div class="filter">
-            <button class="btn btn-dark" id="salesid">Top 25 Sales</button>
+            <button class="btn btn-dark" id="salesid">Top 75 Sales</button>
             </div>
             <div class="filter">
               <a id="stockid"><button class="btn btn-dark" id="top25stocks">Top 25 Stocks</button></a>
@@ -204,7 +204,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                  <h3 class="card-title"><strong>Top 25 Sales Data</strong></h3>
+                  <h3 class="card-title"><strong>Top 75 Sales Data</strong></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

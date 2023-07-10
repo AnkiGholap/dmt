@@ -27,7 +27,6 @@ class UpdateSkuRequest extends FormRequest
             'sku_code'=>'required',
             'name'=>'required',
             'category_id'=>'required',
-            'supplier_id'=>'required',
             'master_sku_id'=>'required',
             'price'=>'required'
         ];
