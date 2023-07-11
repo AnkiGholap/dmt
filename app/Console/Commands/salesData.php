@@ -44,7 +44,7 @@ class salesData extends Command
   
         if($stockdata->count() > 0) {
             foreach ($stockdata as $stockData) {
-                Mail::to($stockData)->send(new DailyStock($stockData));
+                Mail::to('ankita@firsteconomy.com')->send(new DailyStock($stockData));
             }
         }
   
