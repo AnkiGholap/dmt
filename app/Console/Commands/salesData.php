@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Mail;
 use App\Mail\DailyStock;
 use App\Models\Actualstock;
+use DB;
 
 class salesData extends Command
 {
@@ -40,11 +41,13 @@ class salesData extends Command
      */
     public function handle()
     {
-        $stockdata = Actualstock::where('actual_stock','<=',10000)->orWhereNotNull('deleted_at')->get();
+        $stockData='';
+        //$stockData = Actualstock::WhereNotNull('deleted_at')->get();
+        $stockData = DB::table('actualstocks')->join('skus','actualstocks.product_sku_id','=','skus.id')->where('actualstocks.actual_stock','<=',10000)->get();
   
-        if($stockdata->count() > 0) {
-            foreach ($stockdata as $stockData) {
-                Mail::to('ankita@firsteconomy.com')->send(new DailyStock($stockData));
+        if($stockData->count() > 0) {
+            foreach ($stockData as $stockdata) {
+               Mail::to('ankita@firsteconomy.com')->send(new DailyStock($stockdata));
             }
         }
   

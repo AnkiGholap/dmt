@@ -32,6 +32,6 @@ class DailyStock extends Mailable
     public function build()
     {
         return $this->subject('Stock Data Less than 10000 on '.Carbon::now()->format('d-m-Y'))
-                    ->view('emails.stockData');
+                    ->view('admin.emails.stockdata');
     }
 }
