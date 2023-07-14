@@ -1,3 +1,4 @@
+@extends('admin.layouts.master')
 @section('content')
 @section('title', 'Roles')
 
@@ -98,3 +99,4 @@
     </section>
 </div>
 
+@endsection

@@ -101,7 +101,7 @@ jQuery(document).ready(function() {
     jQuery(".secondarymenu").removeClass('active');
     jQuery(this).toggleClass('active');
     var url = jQuery(this).data('url');
-        
+       
       jQuery.ajax({
             method: "GET",
             url: url,

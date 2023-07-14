@@ -1,3 +1,4 @@
+@extends('admin.layouts.master')
 @section('content')
 @section('title', 'Settings')
 
@@ -101,3 +102,4 @@
         </div>
     </section>
 </div>
+@endsection
