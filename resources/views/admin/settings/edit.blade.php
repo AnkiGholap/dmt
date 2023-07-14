@@ -1,3 +1,4 @@
+@extends('admin.layouts.master')
 @section('content')
 @section('title', 'Update Setting Details')
 <div class="content-wrapper">
@@ -28,6 +29,6 @@
         </div>
     </section>
 </div>
-
+@endsection
 
 
